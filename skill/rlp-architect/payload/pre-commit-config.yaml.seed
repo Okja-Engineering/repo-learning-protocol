@@ -1,0 +1,13 @@
+repos:
+  - repo: local
+    hooks:
+      - id: rlp-health
+        name: RLP health check
+        entry: sh -c 'cd <payload-dir> && ./scripts/learning_health.sh -c'
+        language: system
+        pass_filenames: false
+      - id: rlp-tests
+        name: RLP payload tests
+        entry: sh -c 'cd <payload-dir> && ./tests/test_payload.sh'
+        language: system
+        pass_filenames: false

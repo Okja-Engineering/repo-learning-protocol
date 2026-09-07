@@ -1,0 +1,16 @@
+rules:
+  - id: rlp-<rule-id>
+    languages:
+      - <language>
+    patterns:
+      - pattern-either:
+          - pattern: <pattern>
+    message: >-
+      <message that names the fix and links to the convention>.
+      See <path to knowledge module or rule>.
+    severity: ERROR
+    metadata:
+      source: "<PR / issue / conversation>"
+      owner: "<owner>"
+      scope: "<glob>"
+      verify_by: "<YYYY-MM-DD>"

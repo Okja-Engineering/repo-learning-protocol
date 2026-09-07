@@ -1,0 +1,15 @@
+# AGENTS.md
+
+This repository runs the Repository Learning Protocol (RLP).
+
+- Always-on context is capped at ~1,500 tokens; scoped rules and skills load on trigger.
+- New learnings start in `docs/learnings/inbox.md` and are triaged weekly.
+- Capture a candidate with `scripts/capture_learnings.sh`; check health with `scripts/learning_health.sh`.
+- Every promoted artifact carries provenance (`date`, `source`, `owner`, `scope`, `verify_by`).
+- Deletion is a success mode; stale artifacts are pruned monthly.
+
+## Links
+
+- Protocol: `docs/adr/0001-adopt-rlp.md`
+- Inbox: `docs/learnings/inbox.md`
+- Decisions: `docs/learnings/decisions.md`
