@@ -11,6 +11,8 @@ All notable changes to `rlp-architect`.
 - Separated plugin tests from scaffolded assets; payload tests moved to `tests/payload/`.
 - Removed `scripts/install-skill.sh`; install paths are now documented per agent/editor in `README.md`.
 - Validated the plugin boundary in a production field repository by removing its project-local generalized-skill copy and routing it to the canonical plugin.
+- Rewrote `README.md` with a problem/skill mapping, skills catalog, and clearer managed-plugin vs. standalone-skill install story.
+- Added `.out-of-scope.md` documenting deliberate boundaries and claims RLP does not make.
 
 ## 0.3.0 — 2026-09-09
 

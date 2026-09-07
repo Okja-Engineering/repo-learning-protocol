@@ -1,23 +1,41 @@
 # rlp-architect
 
-A Devin plugin that ships Agent Skills for running the **Repository Learning Protocol (RLP)** in any repository.
+> **Agent sessions are builds. The repository is the source.**  
+> `rlp-architect` compiles corrections to AI-agent work into durable repository improvements — checks, tests, scoped context, and skills — so the same mistake is never bought twice.
 
-RLP turns corrections to AI-agent work into durable repository improvements — checks, tests, scoped context, and skills — so the same mistake is never bought twice. Read the protocol rationale at [`RLP.md`](RLP.md).
+Read the research and protocol rationale at [`RLP.md`](RLP.md).
 
-## What it does
+## Why RLP exists
 
-Four skills, one per mode:
+Most agent failures are not model failures. They are **memory failures**: the agent did something wrong last week, you corrected it, and this week it does the same thing again. The correction lived in a chat thread, not in the repository.
 
-- `scaffold` — add minimal, project-specific RLP wiring.
-- `audit` — check promoted learnings against the five RLP invariants.
-- `triage` — route candidates through the RLP promotion ladder.
-- `migrate` — move a legacy learning system through normal triage.
+RLP fixes four recurring failure modes:
 
-Each skill is generalized; none copies itself into a project's configuration. Only project-specific wiring lands in the target repository.
+| Failure mode | What happens | The fix |
+|---|---|---|
+| **The agent forgets what it learned.** | A correction is explained in chat and never written down. | Capture every correction as a one-line candidate in `docs/learnings/inbox.md`. Skill: [`scaffold`](skills/scaffold/SKILL.md) sets this up; [`triage`](skills/triage/SKILL.md) promotes it. |
+| **The agent drowns in stale context.** | Every correction becomes a rule, a doc, a memory. Quality degrades. | Promote only at the strongest tier that can hold the fix: `check > test > scoped context > skill > discard`. Skill: [`triage`](skills/triage/SKILL.md) routes; [`audit`](skills/audit/SKILL.md) enforces a hard always-on budget. |
+| **Fixes live in chat, not in code.** | A regression is fixed once, then rediscovered. | Every promoted artifact is attached to a native mechanism: CI, a test, a scoped rule, or a stage contract. One PR revert removes it. Skill: [`triage`](skills/triage/SKILL.md). |
+| **Old rules never die.** | Legacy tips, ADRs, and lessons accumulate with no owner or expiry. | Every artifact carries provenance and a `verify_by` date. Skill: [`audit`](skills/audit/SKILL.md) prunes stale ones; [`migrate`](skills/migrate/SKILL.md) moves legacy learnings through the same triage gate. |
+
+## The skills
+
+Four focused skills, each doing one job:
+
+| Skill | Invoke | What it does |
+|---|---|---|
+| [`scaffold`](skills/scaffold/SKILL.md) | `/rlp-architect:scaffold` | Add minimal project-specific wiring: inbox, decisions log, capture/health scripts, inert promotion templates. Never copies the generalized skill into the project. |
+| [`triage`](skills/triage/SKILL.md) | `/rlp-architect:triage` | Route inbox candidates through the promotion ladder and draft up to three promotion PRs. Nothing becomes durable without human approval. |
+| [`audit`](skills/audit/SKILL.md) | `/rlp-architect:audit` | Check promoted learnings against the five RLP invariants: repeat, provenance, deletion, budget, liveness. |
+| [`migrate`](skills/migrate/SKILL.md) | `/rlp-architect:migrate` | Move one legacy learning system into RLP through normal triage, with durable evidence and commit-hash provenance. |
 
 ## Install
 
-### Devin
+Two ways in, two philosophies.
+
+### 1. Managed plugin (Devin)
+
+Install the whole set as a plugin. You subscribe to updates; the skills stay read-only and versioned.
 
 ```bash
 devin plugins install Okja-Engineering/repo-learning-protocol
@@ -26,9 +44,9 @@ devin plugins info rlp-architect
 
 Update with `devin plugins update rlp-architect`.
 
-### Claude, Cursor, Codex, or any agent that loads skills
+### 2. Standalone skill copy (Claude, Cursor, Codex, or any agent that loads skills)
 
-Each folder under `skills/` is a standalone Agent Skill. Copy the skills you want into your agent's skill directory:
+Copy only the skills you want into your agent's skill directory. You own the files and pull updates when you choose.
 
 ```bash
 cp -R skills/scaffold ~/.claude/skills/scaffold
@@ -37,52 +55,45 @@ cp -R skills/triage ~/.claude/skills/triage
 cp -R skills/migrate ~/.claude/skills/migrate
 ```
 
-The exact path depends on the agent (`~/.claude/skills/`, `.cursor/skills/`, `.codex/skills/`, etc.). Read the skill names: `scaffold`, `audit`, `triage`, `migrate`.
+The exact path depends on the agent (`~/.claude/skills/`, `.cursor/skills/`, `.codex/skills/`, etc.).
 
-### Local checkout (Devin)
+### Local checkout
 
 ```bash
 devin plugins install .
 ```
 
-## Use
-
-Devin plugin commands use the form `/plugin-name:skill-name`:
-
-```text
-/rlp-architect:scaffold
-/rlp-architect:audit
-/rlp-architect:triage
-/rlp-architect:migrate
-```
-
 ## Getting started
 
-1. **Install** the plugin (Devin) or copy the skills you want into your agent's skill directory.
-2. **Scaffold** a target repository: `/rlp-architect:scaffold`. This creates `docs/learnings/inbox.md`, `docs/learnings/decisions.md`, capture/health scripts, and inert promotion templates — only the wiring, never the generalized skill.
-3. **Capture** corrections as one-line candidates in the inbox, either by hand or with the copied `capture_learnings.sh` script.
-4. **Triage** weekly: `/rlp-architect:triage`. Second occurrence is the signal; security or data-corruption issues route immediately.
-5. **Audit** before releases or after promotions: `/rlp-architect:audit` checks the five invariants.
-6. **Migrate** legacy lessons only when you have real evidence: `/rlp-architect:migrate`.
+1. **Scaffold** a target repository: `/rlp-architect:scaffold`. This creates `docs/learnings/inbox.md`, `docs/learnings/decisions.md`, capture/health scripts, and inert promotion templates — only the wiring, never the generalized skill.
+2. **Capture** corrections as one-line candidates in the inbox, either by hand or with the copied `capture_learnings.sh` script.
+3. **Triage** weekly: `/rlp-architect:triage`. Second occurrence is the signal; security or data-corruption issues route immediately.
+4. **Audit** before releases or after promotions: `/rlp-architect:audit` checks the five invariants.
+5. **Migrate** legacy lessons only when you have real evidence: `/rlp-architect:migrate`.
+
+## What RLP does not do
+
+See [`.out-of-scope.md`](.out-of-scope.md) for the deliberate boundaries.
 
 ## Layout
 
 ```text
 rlp-architect/
 ├── .devin-plugin/plugin.json   # Devin plugin manifest
+├── .out-of-scope.md             # deliberate boundaries
 ├── skills/
-│   ├── scaffold/              # add project wiring
-│   ├── audit/                 # verify the five invariants
-│   ├── triage/                # route inbox candidates
-│   └── migrate/               # move legacy learnings
+│   ├── scaffold/                # add project wiring
+│   ├── audit/                   # verify the five invariants
+│   ├── triage/                  # route inbox candidates
+│   └── migrate/                 # move legacy learnings
 ├── tests/
-│   ├── test_skill.sh           # manifest and layout validation
-│   ├── test_walk.sh            # end-to-end plugin + scaffold + health tests
-│   └── payload/                # payload script unit tests
-├── RLP.md                      # protocol rationale and design principles
-├── CHANGELOG.md                # version history
-├── RELEASE_NOTES.md            # user-facing release summaries
-└── LICENSE                     # MIT
+│   ├── test_skill.sh             # manifest and layout validation
+│   ├── test_walk.sh              # end-to-end plugin + scaffold + health tests
+│   └── payload/                  # payload script unit tests
+├── RLP.md                        # protocol rationale and design principles
+├── CHANGELOG.md                  # version history
+├── RELEASE_NOTES.md              # user-facing release summaries
+└── LICENSE                       # MIT
 ```
 
 ## Tests
