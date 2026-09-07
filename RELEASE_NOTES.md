@@ -1,0 +1,36 @@
+# Release notes
+
+## v0.3.0
+
+`rlp-architect` is a Devin plugin (and a set of standalone Agent Skills) for running the **Repository Learning Protocol (RLP)**. RLP turns corrections to AI-agent work into durable repository improvements — checks, tests, scoped context, and skills — so the same mistake is not bought twice.
+
+### What's new
+
+- **Four focused skills instead of one bundled mode.** The plugin now exposes `scaffold`, `audit`, `triage`, and `migrate` as separate skills:
+  - `/rlp-architect:scaffold` — add minimal project wiring
+  - `/rlp-architect:audit` — check the five RLP invariants
+  - `/rlp-architect:triage` — route inbox candidates
+  - `/rlp-architect:migrate` — move legacy learnings through triage
+- **Standalone skill portability.** Each skill is self-contained. If you use Claude, Cursor, Codex, or another agent that loads Agent Skills, copy the folders under `skills/` into your agent's skill directory.
+- **Cleaner repo surface.** The long research premise is now in `RLP.md`; `README.md` is the concise product entry point. The internal ICM workspace scaffolding was removed from the plugin repo.
+- **MIT license.**
+
+### Install
+
+```bash
+devin plugins install Okja-Engineering/repo-learning-protocol
+```
+
+Then invoke any skill, e.g.:
+
+```text
+/rlp-architect:scaffold
+```
+
+See `README.md` for per-agent install paths.
+
+### Coming up
+
+- Public install verification.
+- Field reports from production repositories.
+- Refined promotion rules based on real recurrence data.

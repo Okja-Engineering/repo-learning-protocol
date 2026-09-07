@@ -17,12 +17,33 @@ Each skill is generalized; none copies itself into a project's configuration. On
 
 ## Install
 
+### Devin
+
 ```bash
 devin plugins install Okja-Engineering/repo-learning-protocol
 devin plugins info rlp-architect
 ```
 
-For local development, run `scripts/install-skill.sh`. Update a published install with `devin plugins update rlp-architect`.
+Update with `devin plugins update rlp-architect`.
+
+### Claude, Cursor, Codex, or any agent that loads skills
+
+Each folder under `skills/` is a standalone Agent Skill. Copy the skills you want into your agent's skill directory:
+
+```bash
+cp -R skills/scaffold ~/.claude/skills/scaffold
+cp -R skills/audit ~/.claude/skills/audit
+cp -R skills/triage ~/.claude/skills/triage
+cp -R skills/migrate ~/.claude/skills/migrate
+```
+
+The exact path depends on the agent (`~/.claude/skills/`, `.cursor/skills/`, `.codex/skills/`, etc.). Read the skill names: `scaffold`, `audit`, `triage`, `migrate`.
+
+### Local checkout (Devin)
+
+```bash
+devin plugins install .
+```
 
 ## Use
 
@@ -45,7 +66,6 @@ rlp-architect/
 │   ├── audit/                 # verify the five invariants
 │   ├── triage/                # route inbox candidates
 │   └── migrate/               # move legacy learnings
-├── scripts/install-skill.sh   # install this checkout as a Devin plugin
 ├── tests/
 │   ├── test_skill.sh           # manifest and layout validation
 │   └── test_walk.sh            # end-to-end plugin + scaffold + health tests
