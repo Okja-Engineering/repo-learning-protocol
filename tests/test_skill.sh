@@ -17,16 +17,22 @@ assert() {
   fi
 }
 
-# Plugin manifest is valid.
+# Plugin manifests are valid.
 python3 - <<'PY'
 import json
-with open('.devin-plugin/plugin.json') as f:
-    manifest = json.load(f)
-assert manifest['name'] == 'rlp-architect', 'name mismatch'
-assert manifest['skills'] == 'skills', 'skills dir mismatch'
-assert 'license' in manifest, 'missing license'
+for path, expected_skills in [
+    ('.devin-plugin/plugin.json', 'skills'),
+    ('.claude-plugin/plugin.json', './skills/'),
+    ('.codex-plugin/plugin.json', './skills/'),
+    ('.cursor-plugin/plugin.json', './skills/'),
+]:
+    with open(path) as f:
+        manifest = json.load(f)
+    assert manifest['name'] == 'rlp-architect', f'{path}: name mismatch'
+    assert manifest['skills'] == expected_skills, f'{path}: skills dir mismatch: {manifest.get("skills")}'
+    assert 'license' in manifest, f'{path}: missing license'
 PY
-assert "plugin manifest valid" true
+assert "plugin manifests valid" true
 
 # Each skill has a valid SKILL.md with frontmatter and name matching directory.
 for skill in scaffold audit triage migrate; do

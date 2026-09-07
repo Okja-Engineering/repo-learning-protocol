@@ -1,0 +1,8 @@
+{
+  "name": "rlp-architect",
+  "displayName": "RLP Architect",
+  "version": "0.3.0",
+  "description": "Agent skills for the Repository Learning Protocol — turn corrections to AI-agent work into durable repository improvements.",
+  "license": "MIT",
+  "skills": "./skills/"
+}

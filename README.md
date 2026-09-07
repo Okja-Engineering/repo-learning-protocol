@@ -31,20 +31,37 @@ Four focused skills, each doing one job:
 
 ## Install
 
-Two ways in, two philosophies.
+### Native plugin (recommended)
 
-### 1. Managed plugin (Devin) — recommended
+Install `rlp-architect` as a plugin in your agent. The plugin namespace keeps the four skills grouped and avoids collisions with other skills you may have installed.
 
-Install the whole set as a Devin plugin. The `rlp-architect` namespace keeps the four skills grouped and avoids name collisions with other skills you may have installed.
+| Agent | Command |
+|---|---|
+| Devin | `devin plugins install Okja-Engineering/repo-learning-protocol` |
+| Claude Code | `claude plugins install Okja-Engineering/repo-learning-protocol` |
+| Codex | Install from the local plugin directory or marketplace entry (see [Codex plugin docs](https://www.codex-docs.com/en/docs/build-plugins)) |
+| Cursor | Copy or symlink the plugin directory to your Cursor plugins folder (see [Cursor plugin docs](https://cursor.com/docs/plugins)) |
 
-```bash
-devin plugins install Okja-Engineering/repo-learning-protocol
-devin plugins info rlp-architect
+All native plugins use the same namespace:
+
+```text
+/rlp-architect:scaffold
+/rlp-architect:audit
+/rlp-architect:triage
+/rlp-architect:migrate
 ```
 
-Update with `devin plugins update rlp-architect`.
+### Local checkout
 
-### 2. Standalone manual copy (any agent)
+```bash
+# Devin
+devin plugins install .
+
+# Claude Code
+claude --plugin-dir .
+```
+
+### Standalone manual copy (any agent)
 
 Copy only the skills you want into your agent's skill directory. You own the files and pull updates when you choose. Because the skill names (`scaffold`, `audit`, `triage`, `migrate`) are generic, this path works best when you control the skill namespace of the target agent.
 
@@ -56,8 +73,6 @@ cp -R skills/migrate ~/.claude/skills/migrate
 ```
 
 The exact path depends on the agent (`~/.claude/skills/`, `.cursor/skills/`, `.codex/skills/`, etc.).
-
-### Local checkout
 
 ```bash
 devin plugins install .
@@ -93,6 +108,9 @@ See [`.out-of-scope.md`](.out-of-scope.md) for the deliberate boundaries.
 ```text
 rlp-architect/
 ├── .devin-plugin/plugin.json   # Devin plugin manifest
+├── .claude-plugin/plugin.json  # Claude Code plugin manifest
+├── .codex-plugin/plugin.json   # Codex plugin manifest
+├── .cursor-plugin/plugin.json  # Cursor plugin manifest
 ├── .out-of-scope.md             # deliberate boundaries
 ├── skills/
 │   ├── scaffold/                # add project wiring
@@ -120,7 +138,7 @@ Both must report `0 failed`.
 
 ## Status
 
-**v0.3.0** — ships as a Devin plugin with Agent Skills in the open [`agentskills.io`](https://agentskills.io) format.
+**v0.3.0** — ships as a plugin for Devin, Claude Code, Codex, and Cursor, with Agent Skills in the open [`agentskills.io`](https://agentskills.io) format.
 
 ## Lineage
 
