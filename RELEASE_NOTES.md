@@ -32,5 +32,5 @@ See `README.md` for per-agent install paths.
 ### Coming up
 
 - Public install verification.
-- Field reports from production repositories.
+- Field reports from production repositories (field trial prep in progress).
 - Refined promotion rules based on real recurrence data.

@@ -10,6 +10,7 @@ All notable changes to `rlp-architect`.
 - Merged `PREMISE.md` into `RLP.md` as the "Evidence and detailed citations" section.
 - Separated plugin tests from scaffolded assets; payload tests moved to `tests/payload/`.
 - Removed `scripts/install-skill.sh`; install paths are now documented per agent/editor in `README.md`.
+- Validated the plugin boundary in a production field repository by removing its project-local generalized-skill copy and routing it to the canonical plugin.
 
 ## 0.3.0 — 2026-09-09
 
