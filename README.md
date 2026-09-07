@@ -26,7 +26,7 @@ A research-backed protocol for turning corrections to AI-agent work into durable
 Install the published repository globally:
 
 ```bash
-devin plugins install owner/repo
+devin plugins install Okja-Engineering/repo-learning-protocol
 ```
 
 For local development, run `scripts/install-skill.sh`. Update a published install with `devin plugins update rlp-architect`. Scaffold writes only project-specific RLP wiring; it does not copy the generalized skill into the target repository.

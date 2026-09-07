@@ -12,7 +12,7 @@ metadata:
 
 Turn recurring corrections into the strongest durable tier that can hold them: enforced check > regression test > scoped context > skill > discard.
 
-RLP is a generalized plugin, not repository content. Install or update it globally with `devin plugins install owner/repo` and `devin plugins update rlp-architect`, or install the skill globally at `~/.config/devin/skills/rlp-architect/`. Never copy this bundle into a project's `.devin/skills/`; project skills are only for repository-specific procedures.
+RLP is a generalized plugin, not repository content. Install or update it globally with `devin plugins install Okja-Engineering/repo-learning-protocol` and `devin plugins update rlp-architect`, or install the skill globally at `~/.config/devin/skills/rlp-architect/`. Never copy this bundle into a project's `.devin/skills/`; project skills are only for repository-specific procedures.
 
 ## Modes
 

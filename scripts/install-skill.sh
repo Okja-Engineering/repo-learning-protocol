@@ -7,12 +7,12 @@ set -euo pipefail
 #   scripts/install-skill.sh
 #
 # Published installs should use:
-#   devin plugins install owner/repo
+#   devin plugins install Okja-Engineering/repo-learning-protocol
 
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 
 if ! command -v devin >/dev/null 2>&1; then
-  echo "Devin CLI not found. Install the published plugin with: devin plugins install owner/repo" >&2
+  echo "Devin CLI not found. Install the published plugin with: devin plugins install Okja-Engineering/repo-learning-protocol" >&2
   exit 1
 fi
 

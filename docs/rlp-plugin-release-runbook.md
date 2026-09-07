@@ -280,7 +280,7 @@ skill/rlp-architect/scripts/record_migration.sh \
 1. Re-run the complete verification suite on the exact commit to publish.
 2. Push the reviewed commits without rewriting history.
 3. Change repository visibility only after explicit confirmation.
-4. Install from the public `owner/repo` source in a clean environment.
+4. Install from the public `Okja-Engineering/repo-learning-protocol` source in a clean environment.
 5. Confirm update behavior and public documentation links.
 6. Tag a release only if the version and release notes have passed review.
 
