@@ -76,6 +76,8 @@ assert "scaffold rule template exists" true
 assert "scaffold api-conventions template exists" true
 [[ -f skills/scaffold/templates/semgrep/rules.yml ]]
 assert "scaffold semgrep template exists" true
+[[ -f skills/scaffold/templates/example-regression-test.sh ]]
+assert "scaffold regression test template exists" true
 [[ -f skills/scaffold/references/0001-adopt-rlp.md ]]
 assert "scaffold adoption ADR exists" true
 
@@ -105,8 +107,8 @@ assert "migrate guide exists" true
 [[ -f skills/migrate/references/promote-learning.md ]]
 assert "migrate promotion reference exists" true
 
-# Payload test suite still passes from the scaffold skill bundle.
-skills/scaffold/assets/tests/test_payload.sh >/dev/null
+# Payload test suite still passes.
+tests/payload/test_payload.sh >/dev/null
 assert "payload tests pass" true
 
 echo
