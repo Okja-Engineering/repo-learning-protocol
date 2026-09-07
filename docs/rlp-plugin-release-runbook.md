@@ -388,3 +388,14 @@ Do not combine pass records. The point is to preserve what was proven at each bo
 **Findings to triage:** The Content Engine has a project-local skill copy at `.devin/skills/rlp-architect/`. The canonical RLP runbook specifies that the generalized skill should not be copied into project configuration; this is existing field state, not a scaffold defect, but should be migrated or removed during Pass 9.  
 **Human decision:** Continue to Pass 5 — Audit semantics.  
 **Next pass authorized:** Pass 5 — Audit semantics.
+
+### Pass 5 record
+
+**Pass:** Pass 5 — Audit semantics  
+**Commit:** (no source change; verification only)  
+**Outcome:** Audit classification behaves as specified: only explicitly-passed always-on files count toward the budget; scoped ADRs and inert templates are excluded by not being passed to `--always`; quoted and unquoted `verify_by` dates both parse; stale artifacts are reported.  
+**Evidence:** Created temp audit fixture with `AGENTS.md`, `CLAUDE.md`, `docs/adr/test.md`, and `docs/rlp-architect/templates/example-rule.md`. With only `AGENTS.md` and `CLAUDE.md` on `--always`, budget was 21/1500 OK. Adding the scoped ADR and template increased the count only because they were deliberately passed; the SKILL.md audit instructions correctly exclude them. Both `verify_by: '2020-01-01'` and `verify_by: 2020-01-01` produced `Stale artifacts:` output.  
+**Findings repaired:** None.  
+**Findings to triage:** The health script has no automatic exclusion logic for templates or scoped artifacts; the agent performing `audit` must implement the exclusion by selecting files. This is by design per SKILL.md but could be surprising.  
+**Human decision:** Continue to Pass 6 — One-learning migration.  
+**Next pass authorized:** Pass 6 — One-learning migration.
