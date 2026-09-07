@@ -89,6 +89,8 @@ assert "skill bundle has at least 12 files" true
 assert "capture_learnings.sh executable" true
 [[ -x skill/rlp-architect/scripts/learning_health.sh ]]
 assert "learning_health.sh executable" true
+grep -q 'plugins install --local' scripts/install-skill.sh
+assert "local installer uses --local" true
 
 # Payload test suite passes.
 skill/rlp-architect/assets/tests/test_payload.sh >/dev/null

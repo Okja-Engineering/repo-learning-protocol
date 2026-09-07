@@ -21,7 +21,7 @@ Use this flow for `.vault/`, `state/lessons/`, `decisions/`, or another legacy s
    source: "PR #412 and conversation 2026-08-19; migrated in commit <full-hash> from .vault/original-rule.md"
    ```
 
-6. Reference scoped ADRs or knowledge modules from the existing stage `CONTEXT.md` that needs them. Do not add an RLP stage to an existing ICM workspace.
+6. Reference scoped ADRs or knowledge modules from the existing stage `CONTEXT.md` that needs them. Do not add an RLP stage to an existing staged workspace.
 7. Remove the legacy system only after every entry is promoted, held in the inbox with an expiry, or discarded and logged. Keep that removal in a separate revertible PR.
 
 If no real source can be recovered, do not represent the old path as provenance. Hold the candidate with an expiry or discard it.

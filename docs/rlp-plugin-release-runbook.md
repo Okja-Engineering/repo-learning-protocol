@@ -45,7 +45,7 @@ git log -1 --oneline
 **Work:**
 
 1. Validate every manifest field against the installed Devin CLI documentation.
-2. Install the local checkout with `devin plugins install .`.
+2. Install the local checkout with `devin plugins install --local .`.
 3. Confirm the plugin appears in `devin plugins list` and inspect it with `devin plugins info rlp-architect`.
 4. Start a fresh session and confirm the actual invocation name shown by Devin.
 5. Correct manifest, README, or invocation examples only if observed behavior differs.
@@ -134,7 +134,7 @@ shasum -a 256 -c SHA256SUMS
 
 ## Pass 4 — Existing-workspace discovery
 
-**Outcome:** Scaffold understands an existing progressively disclosed workspace without creating a parallel structure.
+**Outcome:** Scaffold understands an existing workspace without creating a parallel structure.
 
 **Load only:**
 

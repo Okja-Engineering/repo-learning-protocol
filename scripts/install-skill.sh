@@ -16,4 +16,4 @@ if ! command -v devin >/dev/null 2>&1; then
   exit 1
 fi
 
-devin plugins install "$repo_root"
+devin plugins install --local "$repo_root"

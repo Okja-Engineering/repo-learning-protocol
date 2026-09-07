@@ -29,7 +29,7 @@ Scaffold remains an invocation mode because repositories need wiring, but it doe
 
 1. Discover before proposing writes:
    - inspect `AGENTS.md`, `CONTEXT.md`, editor pointers, `.devin/`, `.claude/`, `.cursor/`, `stages/*/CONTEXT.md`, existing learning logs, tests, CI, linters, and Semgrep configuration;
-   - classify the repo as existing ICM, another routed workspace, or no router.
+   - classify the repo as an existing staged workspace, another routed workspace, or no router.
 2. Present the discovered structure and exact proposed file changes. Ask the user which editor directory to wire (`.devin/`, `.claude/`, `.cursor/`, or another location). Do not infer it from an installed tool.
 3. Ask for approval before writing.
 4. Create only missing project wiring:
@@ -41,8 +41,8 @@ Scaffold remains an invocation mode because repositories need wiring, but it doe
 5. Preserve existing architecture:
    - merge a short RLP route into an existing `AGENTS.md` or root router; never replace the file;
    - if stage contracts exist, point each promoted artifact from the relevant existing `stages/*/CONTEXT.md`;
-   - do not create an RLP stage in an existing ICM workspace;
-   - only when no router or ICM workspace exists, propose a minimal root router and `stages/00-learn/CONTEXT.md`.
+   - do not create an RLP stage in an existing staged workspace;
+   - only when no router or staged workspace exists, propose a minimal root router and `stages/00-learn/CONTEXT.md`.
 6. Make the operation idempotent: compare content before writing, preserve user text, do not duplicate routes, and report unchanged files.
 7. Never copy an unfilled template into an active artifact path such as `docs/knowledge/`, `.devin/rules/`, or `semgrep/rules.yml`. Templates are not promotions.
 
@@ -67,7 +67,7 @@ Scaffold remains an invocation mode because repositories need wiring, but it doe
    - security or data corruption → deterministic check plus a scoped explanation this week;
    - first occurrence → hold with expiry;
    - recurring or expensive → mechanical check, regression test, scoped convention/ADR/knowledge module, repo-specific skill/command note, or discard.
-3. In an ICM workspace, attach scoped artifacts to the existing stage contract that consumes them. Use `docs/adr/` for decisions, `docs/knowledge/<domain>/` for tool conventions, editor/plugin procedures for reusable work, and CI/pre-commit for mechanical checks.
+3. In a staged workspace, attach scoped artifacts to the existing stage contract that consumes them. Use `docs/adr/` for decisions, `docs/knowledge/<domain>/` for tool conventions, editor/plugin procedures for reusable work, and CI/pre-commit for mechanical checks.
 4. Copy a bundled template only after choosing a promotion tier. Replace every placeholder, add evidence that it works, and keep one promotion per revertible PR.
 5. Draft at most three promotions and append every decision to `docs/learnings/decisions.md`.
 6. Nothing becomes durable until a human approves and merges it.

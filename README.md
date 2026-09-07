@@ -36,19 +36,19 @@ For local development, run `scripts/install-skill.sh`. Update a published instal
 In the target repo, invoke the skill with a mode:
 
 ```text
-/rlp-architect scaffold
+/rlp-architect:rlp-architect scaffold
 ```
 
-Discovers the repository, asks which editor directory to use, and proposes minimal wiring: scripts, learning logs, inert templates, router references, and approved CI hooks. Existing ICM stage contracts are extended rather than duplicated.
+Discovers the repository, asks which editor directory to use, and proposes minimal wiring: scripts, learning logs, inert templates, router references, and approved CI hooks. Existing stage contracts are extended rather than duplicated.
 
 ```text
-/rlp-architect audit
+/rlp-architect:rlp-architect audit
 ```
 
 Runs `scripts/learning_health.sh` and checks the five RLP invariants.
 
 ```text
-/rlp-architect triage
+/rlp-architect:rlp-architect triage
 ```
 
 Walks the inbox through the RLP router and drafts promotion PRs.

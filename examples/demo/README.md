@@ -17,7 +17,7 @@ The demo repository receives only project-specific wiring when scaffold runs; th
 Open `examples/demo/` in your agent and run:
 
 ```text
-/rlp-architect scaffold
+/rlp-architect:rlp-architect scaffold
 ```
 
 Then:
@@ -41,7 +41,7 @@ Then:
 
 4. Run the audit:
    ```text
-   /rlp-architect audit
+   /rlp-architect:rlp-architect audit
    ```
 
 5. Run triage and route the recurring `naive-datetime` slug to the strongest tier that fits.
