@@ -39,19 +39,31 @@ assert "SKILL.md frontmatter valid" true
 [[ -d skill/rlp-architect ]]
 assert "skill directory exists" true
 
-# Payload contains the expected templates and scripts.
-file_count="$(find skill/rlp-architect/payload -type f | wc -l | tr -d '[:space:]')"
-[[ "$file_count" -ge 12 ]]
-assert "payload has at least 12 files" true
+# Follows Agent Skills layout: SKILL.md, scripts/, references/, assets/.
+[[ -f skill/rlp-architect/SKILL.md ]]
+assert "SKILL.md exists" true
+[[ -d skill/rlp-architect/scripts ]]
+assert "scripts/ directory exists" true
+[[ -d skill/rlp-architect/references ]]
+assert "references/ directory exists" true
+[[ -d skill/rlp-architect/assets ]]
+assert "assets/ directory exists" true
+[[ ! -d skill/rlp-architect/payload ]]
+assert "old payload/ directory removed" true
 
-# Payload scripts are executable.
-[[ -x skill/rlp-architect/payload/scripts/capture_learnings.sh ]]
+# Skill bundle contains the expected files.
+file_count="$(find skill/rlp-architect -type f | wc -l | tr -d '[:space:]')"
+[[ "$file_count" -ge 12 ]]
+assert "skill bundle has at least 12 files" true
+
+# Scripts are executable.
+[[ -x skill/rlp-architect/scripts/capture_learnings.sh ]]
 assert "capture_learnings.sh executable" true
-[[ -x skill/rlp-architect/payload/scripts/learning_health.sh ]]
+[[ -x skill/rlp-architect/scripts/learning_health.sh ]]
 assert "learning_health.sh executable" true
 
 # Payload test suite passes.
-skill/rlp-architect/payload/tests/test_payload.sh >/dev/null
+skill/rlp-architect/assets/tests/test_payload.sh >/dev/null
 assert "payload tests pass" true
 
 echo

@@ -22,22 +22,24 @@ The user can invoke this skill with a mode argument. If they do not, ask which m
 
 ## scaffold
 
-1. Read the bundled payload in `payload/`.
-2. Copy each payload item into the repo root (or a chosen subdirectory such as `rlp/`):
-   - `payload/scripts/capture_learnings.sh`
-   - `payload/scripts/learning_health.sh`
-   - `payload/docs/adr/0001-adopt-rlp.md`
-   - `payload/docs/knowledge/example-domain/example-rule.md`
-   - `payload/docs/learnings/inbox.md`
-   - `payload/docs/learnings/decisions.md`
-   - `payload/commands/promote-learning.md`
-   - `payload/rules/api-conventions.md`
-   - `payload/semgrep/rules.yml`
-   - `payload/tests/test_payload.sh`, `payload/tests/helpers.sh`, `payload/tests/example_regression_test.sh`
-   - `payload/AGENTS.md.seed` → `AGENTS.md`
-   - `payload/pre-commit-config.yaml.seed` → merge into `.pre-commit-config.yaml` if one exists
+1. Read the bundled skill layout:
+   - executable scripts in `scripts/`
+   - reference docs and templates in `references/`
+   - installable seed files in `assets/`
+2. Copy the seed files into the repo root (or a chosen subdirectory such as `rlp/`):
+   - `scripts/capture_learnings.sh` → `scripts/capture_learnings.sh`
+   - `scripts/learning_health.sh` → `scripts/learning_health.sh`
+   - `assets/inbox.md` → `docs/learnings/inbox.md`
+   - `assets/decisions.md` → `docs/learnings/decisions.md`
+   - `assets/semgrep/rules.yml` → `semgrep/rules.yml`
+   - `assets/tests/*` → `tests/`
+   - `assets/AGENTS.md.seed` → `AGENTS.md`
+   - `assets/pre-commit-config.yaml.seed` → merge into `.pre-commit-config.yaml` if one exists
+   - `references/0001-adopt-rlp.md` → `docs/adr/0001-adopt-rlp.md`
+   - `references/example-rule.md` → `docs/knowledge/example-domain/example-rule.md`
+   - `references/promote-learning.md` and `references/api-conventions.md` into the appropriate editor directory if it exists (`.devin/commands/` and `.devin/rules/`, `.cursor/commands/` and `.cursor/rules/`, `.claude/commands/` and `.claude/rules/`, etc.); otherwise place them under `docs/rlp-architect/` for manual use.
 3. Make all `*.sh` files executable.
-4. Run `tests/test_payload.sh` from the installed payload directory and confirm `0 failed`.
+4. Run `tests/test_payload.sh` and confirm `0 failed`.
 5. Report what was installed and the suggested first triage date.
 
 ## audit
