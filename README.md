@@ -82,13 +82,24 @@ devin plugins install .
 npx skills add file:///path/to/repo-learning-protocol
 ```
 
+## After installing
+
+How you invoke a skill depends on how you installed it:
+
+| Install method | Invoke a skill |
+|---|---|
+| Devin plugin | `/rlp-architect:scaffold`, `/rlp-architect:audit`, `/rlp-architect:triage`, `/rlp-architect:migrate` |
+| `npx skills` or manual copy | `/scaffold`, `/audit`, `/triage`, `/migrate` (or your agent's equivalent skill-name trigger) |
+
+`npx skills` installs each skill as a standalone skill with its own name. The `rlp-architect` namespace only exists inside the Devin plugin.
+
 ## Getting started
 
-1. **Scaffold** a target repository: `/rlp-architect:scaffold`. This creates `docs/learnings/inbox.md`, `docs/learnings/decisions.md`, capture/health scripts, and inert promotion templates — only the wiring, never the generalized skill.
+1. **Scaffold** a target repository: `/rlp-architect:scaffold` (Devin plugin) or `/scaffold` (standalone skill). This creates `docs/learnings/inbox.md`, `docs/learnings/decisions.md`, capture/health scripts, and inert promotion templates — only the wiring, never the generalized skill.
 2. **Capture** corrections as one-line candidates in the inbox, either by hand or with the copied `capture_learnings.sh` script.
-3. **Triage** weekly: `/rlp-architect:triage`. Second occurrence is the signal; security or data-corruption issues route immediately.
-4. **Audit** before releases or after promotions: `/rlp-architect:audit` checks the five invariants.
-5. **Migrate** legacy lessons only when you have real evidence: `/rlp-architect:migrate`.
+3. **Triage** weekly: `/rlp-architect:triage` (Devin plugin) or `/triage` (standalone). Second occurrence is the signal; security or data-corruption issues route immediately.
+4. **Audit** before releases or after promotions: `/rlp-architect:audit` (Devin plugin) or `/audit` (standalone) checks the five invariants.
+5. **Migrate** legacy lessons only when you have real evidence: `/rlp-architect:migrate` (Devin plugin) or `/migrate` (standalone).
 
 ## What RLP does not do
 
