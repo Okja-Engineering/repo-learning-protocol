@@ -12,13 +12,15 @@ Two methodologies are layered here: **ICM** (folder structure as agent architect
 | `CONTEXT.md` | Task routing (Layer 1). Read it next. |
 | `stages/01-research/` | Paper, evidence, citation pool |
 | `stages/02-protocol/` | The RLP spec |
-| `stages/03-skill/` | The product — `rlp-architect` skill + payload |
+| `stages/03-skill/` | Stage contract for the `rlp-architect` product |
+| `skill/rlp-architect/` | Shipped `rlp-architect` Agent Skill bundle (`SKILL.md`, `scripts/`, `references/`, `assets/`) |
+| `scripts/install-skill.sh` | Install the skill into a target repo's `.agents/skills/` |
 | `stages/04-field/` | RLP applied to RLP: triage of field feedback |
 | `docs/learnings/` | This repo's own learning loop (stage 04 reads it) |
 | `docs/rlp-architect-construction-playbook.md` | The construction playbook |
 | `research/RESEARCH-PLAN.md` | Open questions and validation methods |
 | `references/` | Supporting evidence and citation pool |
-| `tests/` | Proof suite (payload + walk test) |
+| `tests/` | Proof suite (skill manifest + payload tests) |
 
 ## Routing
 

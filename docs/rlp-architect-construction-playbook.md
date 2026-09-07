@@ -3,7 +3,7 @@
 From an empty repository to rlp-architect v0.2.0 — an ICM factory running RLP on itself.
 
 **Date:** 2026-08-26
-**Status:** Self-contained · self-verifying (15 tests · 34 checksums · walk test in CI)
+**Status:** Self-contained · self-verifying (shell tests · manifest validation · installable Agent Skill)
 
 ## Purpose
 
@@ -11,7 +11,7 @@ Starting from an empty repository, build rlp-architect — the Repository Learni
 
 ## How to run this
 
-Create an empty git repo, drop this single file in the root, and execute one phase per Cursor/Claude agent run, in order (Phases 0–6). Each phase ends with a GATE — concrete evidence, captured output, no vibes. Do not start phase N+1 until phase N's gate passes. Commit at the end of each phase. Requirements: Python 3.10+, git, pip install pytest; semgrep and pre-commit are needed only from Phase 5 (install then if absent).
+Create an empty git repo, drop this single file in the root, and execute one phase per Cursor/Claude agent run, in order (Phases 0–6). Each phase ends with a GATE — concrete evidence, captured output, no vibes. Do not start phase N+1 until phase N's gate passes. Commit at the end of each phase. Requirements: POSIX shell (bash 3.2+ or zsh), git; semgrep and pre-commit are needed only from Phase 5 (install then if absent).
 
 ## Scope guard
 
@@ -42,20 +42,16 @@ rlp-architect/
 │   ├── 03_skill/CONTEXT.md
 │   └── 04_field/{CONTEXT.md, output/}
 ├── docs/learnings/{inbox.md, decisions.md}   # RLP applied to this repo itself (Phase 4)
-├── skill/rlp-architect/
+├── skill/rlp-architect/             # Agent Skill bundle (source of truth)
 │   ├── SKILL.md                       # the three modes (the product)
-│   └── payload/
-│       ├── scripts/{capture_learnings.py, learning_health.py}
-│       ├── docs/learnings/{inbox.md, decisions.md}
-│       ├── docs/adr/0001-adopt-rlp.md
-│       ├── docs/knowledge/escrow/rounding.md
-│       ├── .cursor/commands/promote-learning.md
-│       ├── .cursor/rules/api-conventions.mdc
+│   ├── scripts/{capture_learnings.sh, learning_health.sh}
+│   ├── references/{promote-learning.md, api-conventions.md, 0001-adopt-rlp.md, example-rule.md}
+│   └── assets/
+│       ├── {inbox.md, decisions.md, AGENTS.md.seed, pre-commit-config.yaml.seed}
 │       ├── semgrep/rules.yml
-│       ├── tests/test_utc_now.py
-│       ├── AGENTS.md.seed
-│       └── pre-commit-config.yaml.seed
-├── tests/                             # test_payload.py (8) + test_walk.py (7)
+│       └── tests/{test_payload.sh, helpers.sh, example_regression_test.sh}
+├── scripts/install-skill.sh         # install skill into target .agents/skills/
+├── tests/                             # test_skill.sh (manifest/layout validation)
 ├── examples/demo/                     # Phase 5 dogfood (created then, not embedded)
 └── SHA256SUMS
 ```
@@ -76,11 +72,11 @@ rlp-architect/
 
 ## Phase 1 — The payload scripts, proven
 
-**Goal:** The two load-bearing scripts exist and 8 tests pass.
+**Goal:** The two load-bearing scripts exist and the shell test suite passes.
 
-[Full verbatim blocks for learning_health.py, capture_learnings.py, test_payload.py — see original playbook]
+[Full verbatim blocks for `capture_learnings.sh`, `learning_health.sh`, and `tests/test_payload.sh` — see original playbook]
 
-**GATE 1:** Output shows 8 passed.
+**GATE 1:** `tests/test_payload.sh` reports `0 failed`.
 
 **Commit:** `feat: payload scripts (capture, health) with passing proof suite`
 
@@ -90,9 +86,9 @@ rlp-architect/
 
 **Goal:** Everything scaffold mode deploys.
 
-[Full verbatim blocks for inbox.md, decisions.md, promote-learning.md, rules.yml, api-conventions.mdc, test_utc_now.py, AGENTS.md.seed, pre-commit-config.yaml.seed, 0001-adopt-rlp.md, rounding.md — see original playbook]
+[Full verbatim blocks for `inbox.md`, `decisions.md`, `promote-learning.md`, `api-conventions.md`, `example-rule.md`, `example_regression_test.sh`, `AGENTS.md.seed`, `pre-commit-config.yaml.seed`, `0001-adopt-rlp.md`, and `rules.yml` — see original playbook]
 
-**GATE 2:** `find skill -type f | wc -l` returns 12; tests still pass.
+**GATE 2:** `find skill/rlp-architect -type f | wc -l` returns at least 12; tests still pass.
 
 **Commit:** `feat: payload templates — inbox/decisions, router command, semgrep, seeds`
 
@@ -104,7 +100,7 @@ rlp-architect/
 
 [Full verbatim block for SKILL.md — see original playbook]
 
-**GATE 3:** YAML frontmatter parses; description under 1024 chars; `find skill -type f | wc -l` returns 13.
+**GATE 3:** YAML frontmatter parses; description under 1024 chars; skill name matches directory; `find skill/rlp-architect -type f | wc -l` returns at least 13.
 
 **Commit:** `feat: rlp-architect skill — scaffold, audit, triage modes`
 
@@ -114,23 +110,23 @@ rlp-architect/
 
 **Goal:** The repository itself becomes an ICM workspace running RLP on itself.
 
-[Full verbatim blocks for AGENTS.md, CLAUDE.md, CONTEXT.md, all stage CONTEXT.md files, REFERENCES.md (109-entry citation pool), RLP spec v0.2, inbox.md, decisions.md, test_walk.py — see original playbook]
+[Full verbatim blocks for AGENTS.md, CLAUDE.md, CONTEXT.md, all stage CONTEXT.md files, REFERENCES.md (109-entry citation pool), RLP spec v0.2, inbox.md, decisions.md, and the skill manifest validator — see original playbook]
 
-**GATE 4:** Output shows 15 passed (8 payload + 7 walk).
+**GATE 4:** `tests/test_skill.sh` passes; `scripts/install-skill.sh` installs the skill into a temp repo and the installed copy still passes its payload tests.
 
-**Commit:** `feat: ICM factory shell — layered identity/routing, stage contracts, self-RLP inbox, walk test`
+**Commit:** `feat: ICM factory shell — layered identity/routing, stage contracts, self-RLP inbox, skill validation`
 
 ---
 
 ## Phase 5 — Dogfood proof
 
-**Goal:** Demonstrate that the skill's scaffold produces a repo where RLP's repeat test actually bites.
+**Goal:** Demonstrate that `scripts/install-skill.sh` followed by the skill's `scaffold` mode produces a repo where RLP's repeat test actually bites.
 
 [Demo setup and proof steps — see original playbook]
 
 **GATE 5:** PROOF.md exists with recurrence flag, semgrep finding, firing counts, budget check.
 
-**Commit:** `test: dogfood proof — scaffold applied to examples/demo, repeat test demonstrated`
+**Commit:** `test: dogfood proof — install + scaffold, repeat test demonstrated`
 
 ---
 
@@ -140,7 +136,7 @@ rlp-architect/
 
 [SHA256SUMS manifest and verification steps — see original playbook]
 
-**GATE 6:** `sha256sum -c SHA256SUMS` all OK; fresh clone shows 15 passed; `git tag v0.2.0` exists.
+**GATE 6:** `sha256sum -c SHA256SUMS` all OK; fresh clone passes `tests/test_skill.sh`; `scripts/install-skill.sh` installs into a temp repo and the installed skill passes its tests; `git tag v0.2.0` exists.
 
 **Commit:** `chore: release rlp-architect v0.2.0`
 
