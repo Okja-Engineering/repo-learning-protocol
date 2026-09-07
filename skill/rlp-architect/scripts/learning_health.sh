@@ -79,7 +79,12 @@ for f in "${always_on[@]}"; do
     }
   ' "$f")"
   [[ -z "$verify_by" ]] && continue
-  verify_epoch="$(date -j -f "%Y-%m-%d" "$verify_by" +%s 2>/dev/null || date -d "$verify_by" +%s)"
+  if [[ ! "$verify_by" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+    echo "Warning: $f has unparseable verify_by '$verify_by' (expected YYYY-MM-DD)" >&2
+    continue
+  fi
+  verify_epoch="$(date -j -f "%Y-%m-%d" "$verify_by" +%s 2>/dev/null || date -d "$verify_by" +%s 2>/dev/null)"
+  [[ -z "$verify_epoch" ]] && continue
   if [[ "$verify_epoch" -le "$now_epoch" ]]; then
     if [[ "$stale" -eq 0 ]]; then
       echo "Stale artifacts:"
