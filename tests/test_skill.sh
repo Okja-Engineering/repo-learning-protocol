@@ -29,7 +29,7 @@ for path, expected_skills in [
     with open(path) as f:
         manifest = json.load(f)
     assert manifest['name'] == 'rlp-architect', f'{path}: name mismatch'
-    assert manifest['version'] == '0.4.0', f'{path}: version mismatch: {manifest.get("version")}'
+    assert manifest['version'] == '0.5.0', f'{path}: version mismatch: {manifest.get("version")}'
     assert manifest['skills'] == expected_skills, f'{path}: skills dir mismatch: {manifest.get("skills")}'
     assert 'license' in manifest, f'{path}: missing license'
 PY

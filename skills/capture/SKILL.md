@@ -4,7 +4,7 @@ description: Capture a correction to AI-agent work as a one-line candidate in th
 license: MIT
 compatibility: POSIX shell (bash 3.2+ or zsh), git.
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # capture
