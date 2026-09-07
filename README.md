@@ -13,10 +13,10 @@ RLP fixes four recurring failure modes:
 
 | Failure mode | What happens | The fix |
 |---|---|---|
-| **The agent forgets what it learned.** | A correction is explained in chat and never written down. | Capture every correction as a one-line candidate in `docs/learnings/inbox.md`. Skill: [`scaffold`](skills/scaffold/SKILL.md) sets this up; [`triage`](skills/triage/SKILL.md) promotes it. |
+| **The agent forgets what it learned.** | A correction is explained in chat and never written down. | Capture every correction as a one-line candidate in `docs/learnings/inbox.md`. Skill: [`capture`](skills/capture/SKILL.md) writes the line; [`scaffold`](skills/scaffold/SKILL.md) sets up the inbox; [`triage`](skills/triage/SKILL.md) promotes it. |
 | **The agent drowns in stale context.** | Every correction becomes a rule, a doc, a memory. Quality degrades. | Promote only at the strongest tier that can hold the fix: `check > test > scoped context > skill > discard`. Skill: [`triage`](skills/triage/SKILL.md) routes; [`audit`](skills/audit/SKILL.md) enforces a hard always-on budget. |
 | **Fixes live in chat, not in code.** | A regression is fixed once, then rediscovered. | Every promoted artifact is attached to a native mechanism: CI, a test, a scoped rule, or a stage contract. One PR revert removes it. Skill: [`triage`](skills/triage/SKILL.md). |
-| **Old rules never die.** | Legacy tips, ADRs, and lessons accumulate with no owner or expiry. | Every artifact carries provenance and a `verify_by` date. Skill: [`audit`](skills/audit/SKILL.md) prunes stale ones; [`migrate`](skills/migrate/SKILL.md) moves legacy learnings through the same triage gate. |
+| **Old rules never die.** | Legacy tips, ADRs, and lessons accumulate with no owner or expiry. | Every artifact carries provenance and a `verify_by` date. Skill: [`audit`](skills/audit/SKILL.md) prunes stale ones. |
 
 ## The skills
 
@@ -25,9 +25,10 @@ Four focused skills, each doing one job:
 | Skill | Invoke | What it does |
 |---|---|---|
 | [`scaffold`](skills/scaffold/SKILL.md) | `/rlp-architect:scaffold` | Add minimal project-specific wiring: inbox, decisions log, capture/health scripts, inert promotion templates. Never copies the generalized skill into the project. |
+| [`capture`](skills/capture/SKILL.md) | `/rlp-architect:capture` | Add a one-line learning candidate to the inbox after a correction. Cheap; default outcome is discard. |
 | [`triage`](skills/triage/SKILL.md) | `/rlp-architect:triage` | Route inbox candidates through the promotion ladder and draft up to three promotion PRs. Nothing becomes durable without human approval. |
 | [`audit`](skills/audit/SKILL.md) | `/rlp-architect:audit` | Check promoted learnings against the five RLP invariants: repeat, provenance, deletion, budget, liveness. |
-| [`migrate`](skills/migrate/SKILL.md) | `/rlp-architect:migrate` | Move one legacy learning system into RLP through normal triage, with durable evidence and commit-hash provenance. |
+
 
 ## Install
 
@@ -46,9 +47,9 @@ All native plugins use the same namespace:
 
 ```text
 /rlp-architect:scaffold
-/rlp-architect:audit
+/rlp-architect:capture
 /rlp-architect:triage
-/rlp-architect:migrate
+/rlp-architect:audit
 ```
 
 ### Local checkout
@@ -63,13 +64,13 @@ claude --plugin-dir .
 
 ### Standalone manual copy (any agent)
 
-Copy only the skills you want into your agent's skill directory. You own the files and pull updates when you choose. Because the skill names (`scaffold`, `audit`, `triage`, `migrate`) are generic, this path works best when you control the skill namespace of the target agent.
+Copy only the skills you want into your agent's skill directory. You own the files and pull updates when you choose. Because the skill names (`scaffold`, `capture`, `audit`, `triage`) are generic, this path works best when you control the skill namespace of the target agent.
 
 ```bash
 cp -R skills/scaffold ~/.claude/skills/scaffold
+cp -R skills/capture ~/.claude/skills/capture
 cp -R skills/audit ~/.claude/skills/audit
 cp -R skills/triage ~/.claude/skills/triage
-cp -R skills/migrate ~/.claude/skills/migrate
 ```
 
 The exact path depends on the agent (`~/.claude/skills/`, `.cursor/skills/`, `.codex/skills/`, etc.).
@@ -84,20 +85,19 @@ With the Devin plugin:
 
 ```text
 /rlp-architect:scaffold
-/rlp-architect:audit
+/rlp-architect:capture
 /rlp-architect:triage
-/rlp-architect:migrate
+/rlp-architect:audit
 ```
 
-If you copied a skill into your agent's skill directory, invoke it by skill name (`/scaffold`, `/audit`, `/triage`, `/migrate` — exact syntax depends on the agent).
+If you copied a skill into your agent's skill directory, invoke it by skill name (`/scaffold`, `/capture`, `/audit`, `/triage` — exact syntax depends on the agent).
 
 ## Getting started
 
 1. **Scaffold** a target repository: `/rlp-architect:scaffold`. This creates `docs/learnings/inbox.md`, `docs/learnings/decisions.md`, capture/health scripts, and inert promotion templates — only the wiring, never the generalized skill.
-2. **Capture** corrections as one-line candidates in the inbox, either by hand or with the copied `capture_learnings.sh` script.
+2. **Capture** corrections as one-line candidates in the inbox: `/rlp-architect:capture <sentence>` or the copied `capture_learnings.sh` script.
 3. **Triage** weekly: `/rlp-architect:triage`. Second occurrence is the signal; security or data-corruption issues route immediately.
 4. **Audit** before releases or after promotions: `/rlp-architect:audit` checks the five invariants.
-5. **Migrate** legacy lessons only when you have real evidence: `/rlp-architect:migrate`.
 
 ## What RLP does not do
 
@@ -114,9 +114,9 @@ rlp-architect/
 ├── .out-of-scope.md             # deliberate boundaries
 ├── skills/
 │   ├── scaffold/                # add project wiring
-│   ├── audit/                   # verify the five invariants
+│   ├── capture/                 # add a learning candidate to the inbox
 │   ├── triage/                  # route inbox candidates
-│   └── migrate/                 # move legacy learnings
+│   └── audit/                   # verify the five invariants
 ├── tests/
 │   ├── test_skill.sh             # manifest and layout validation
 │   ├── test_walk.sh              # end-to-end plugin + scaffold + health tests

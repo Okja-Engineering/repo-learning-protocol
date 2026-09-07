@@ -36,7 +36,7 @@ PY
 assert "plugin manifests valid" true
 
 # Each skill has a valid SKILL.md with frontmatter and name matching directory.
-for skill in scaffold audit triage migrate; do
+for skill in scaffold capture triage audit; do
   dir="skills/$skill"
   [[ -d "$dir" ]]
   assert "skills/$skill directory exists" true
@@ -94,6 +94,10 @@ assert "audit health script executable" true
 [[ -f skills/audit/references/promote-learning.md ]]
 assert "audit promotion reference exists" true
 
+# Capture skill carries the capture script.
+[[ -x skills/capture/scripts/capture_learnings.sh ]]
+assert "capture script executable" true
+
 # Triage skill carries capture + health scripts and promotion templates.
 [[ -x skills/triage/scripts/capture_learnings.sh ]]
 assert "triage capture script executable" true
@@ -104,15 +108,6 @@ assert "triage promotion reference exists" true
 [[ -f skills/triage/templates/example-rule.md ]]
 assert "triage rule template exists" true
 
-# Migrate skill carries the migration script and guides.
-[[ -x skills/migrate/scripts/record_migration.sh ]]
-assert "migrate record script executable" true
-[[ -x skills/migrate/scripts/learning_health.sh ]]
-assert "migrate health script executable" true
-[[ -f skills/migrate/references/migration-guide.md ]]
-assert "migrate guide exists" true
-[[ -f skills/migrate/references/promote-learning.md ]]
-assert "migrate promotion reference exists" true
 
 # Payload test suite still passes.
 tests/payload/test_payload.sh >/dev/null

@@ -101,14 +101,6 @@ PY
   assert "Semgrep template parses" true
 }
 
-test_migration_provenance() {
-  local out
-  out="$(skills/migrate/scripts/record_migration.sh -p .vault/rule.md -m HEAD -s 'PR #42')"
-  echo "$out" | grep -q 'PR #42; migrated in commit '
-  echo "$out" | grep -q ' from .vault/rule.md"'
-  assert "migration provenance includes evidence and lineage" true
-}
-
 test_current_snapshot_passes_tests() {
   local snapshot="$tmp/snapshot"
   mkdir -p "$snapshot"
@@ -126,7 +118,6 @@ test_capture_and_health
 test_budget_enforcement
 test_quoted_stale_artifact
 test_semgrep_template_yaml_valid
-test_migration_provenance
 test_current_snapshot_passes_tests
 
 echo

@@ -4,6 +4,13 @@ All notable changes to `rlp-architect`.
 
 ## Unreleased
 
+- Removed `migrate` skill; the core plugin now consists of `scaffold`, `capture`, `triage`, and `audit`.
+- Added `capture` skill to make adding a one-line learning candidate to the inbox a first-class interaction.
+- Rewrote `triage` as an interactive layer-picker with seven ordered questions that route a learning to the strongest enforcement tier.
+- Added capture ritual to `scaffold` to clarify how learnings are discovered and placed in the inbox.
+- Updated `README.md`, `RELEASE_NOTES.md`, and tests to reflect the four-skill surface.
+- Aligned all four `SKILL.md` files with Agent Skills spec: added `When to use`, `Examples`, `Deterministic actions`, and `Orchestration` sections; renamed capture script to `capture_learnings.sh` for consistency.
+
 ## 0.5.0 — planned
 
 - Additional distribution paths as the ecosystem stabilizes (e.g. `npx skills` or agent marketplaces).

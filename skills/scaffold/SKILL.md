@@ -11,26 +11,99 @@ metadata:
 
 Add minimal, project-specific RLP wiring to a repository. Scaffold does not install the generalized skill; it creates only the files a project needs to operate the protocol locally.
 
-## Process
+## When to use
 
-1. Discover before proposing writes:
-   - inspect `AGENTS.md`, `CONTEXT.md`, editor pointers (`.devin/`, `.claude/`, `.cursor/`), existing learning logs, tests, CI, linters, and Semgrep configuration;
-   - classify the repo as an existing routed workspace or no router.
-2. Present the discovered structure and exact proposed file changes. Ask the user which editor directory to wire (`.devin/`, `.claude/`, `.cursor/`, or another). Do not infer it from an installed tool.
-3. Ask for approval before writing.
-4. Create only missing project wiring:
-   - `docs/learnings/inbox.md` and `docs/learnings/decisions.md`;
-   - repo-local copies of `scripts/capture_learnings.sh` and `scripts/learning_health.sh` when CI or local commands need them;
-   - `docs/rlp-architect/templates/`, copied from bundled `templates/`, as inert starters for manual use during promotion;
-   - an editor command note that invokes the global/plugin skill, if approved;
-   - CI or pre-commit wiring only when the repository already uses that mechanism or the user approves adding it.
-5. Preserve existing architecture:
-   - merge a short RLP route into an existing `AGENTS.md` or root router; never replace the file;
-   - if stage contracts exist, note where promoted artifacts should be attached;
-   - do not create an RLP stage in an existing staged workspace;
-   - only when no router or staged workspace exists, propose a minimal root router and copy the bundled `assets/stages/00-learn/CONTEXT.md` to `stages/00-learn/CONTEXT.md`.
-6. Make the operation idempotent: compare content before writing, preserve user text, do not duplicate routes, and report unchanged files.
-7. Never copy an unfilled template into an active artifact path such as `docs/knowledge/`, `.devin/rules/`, or `semgrep/rules.yml`. Templates are not promotions.
+Use when a repository needs:
+
+- An inbox and decisions log for the Repository Learning Protocol.
+- Health scripts to check recurrence, budget, and staleness.
+- Inert promotion templates without copying the generalized skill bundle.
+
+Use only after inspecting the existing router and editor configuration. Do not use scaffold to add active promotions or overwrite user files.
+
+## Deterministic actions (60%)
+
+### Files to create
+
+Create only missing wiring:
+
+- `docs/learnings/inbox.md`
+- `docs/learnings/decisions.md`
+- `scripts/capture_learnings.sh` (when CI or local commands need it)
+- `scripts/learning_health.sh` (when CI or local commands need it)
+- `docs/rlp-architect/templates/`, copied from bundled `templates/` — inert starters for manual use during promotion
+- a minimal root router or merged route into existing `AGENTS.md`
+- an editor command note that invokes the global/plugin skill, if approved
+- CI or pre-commit wiring only when the repository already uses that mechanism or the user approves adding it
+
+### Hard rules
+
+- Compare content before writing; do not overwrite user files.
+- Do not duplicate routes in `AGENTS.md` or root routers.
+- Never copy an unfilled template into an active artifact path such as `docs/knowledge/`, `.devin/rules/`, or `semgrep/rules.yml`.
+- Templates are not promotions.
+
+### Capture ritual to include
+
+Add this ritual to the created `AGENTS.md` or root router:
+
+```text
+/rlp-architect:capture <sentence>     # add a learning candidate to the inbox
+scripts/capture_learnings.sh -l <link> -s <slug> -t "<sentence>"
+```
+
+Replace `<rlp-dir>` in `pre-commit-config.yaml.seed` with the target repository path before promotion.
+
+## Orchestration (30%)
+
+### Discovery process
+
+1. Inspect `AGENTS.md`, `CONTEXT.md`, editor pointers (`.devin/`, `.claude/`, `.cursor/`), existing learning logs, tests, CI, linters, and Semgrep configuration.
+2. Classify the repo as an existing routed workspace or no router.
+3. Present the discovered structure and exact proposed file changes.
+4. Ask the user which editor directory to wire (`.devin/`, `.claude/`, `.cursor/`, or another). Do not infer it from an installed tool.
+5. Ask for approval before writing.
+
+### Preserve existing architecture
+
+- Merge a short RLP route into an existing `AGENTS.md` or root router; never replace the file.
+- If stage contracts exist, note where promoted artifacts should be attached.
+- Do not create an RLP stage in an existing staged workspace.
+- Only when no router or staged workspace exists, propose a minimal root router and copy the bundled `assets/stages/00-learn/CONTEXT.md` to `stages/00-learn/CONTEXT.md`.
+
+### Idempotency
+
+- Compare content before writing.
+- Preserve user text.
+- Do not duplicate routes.
+- Report unchanged files.
+
+### Validation checklist
+
+- [ ] No existing user files were overwritten.
+- [ ] No duplicate routes exist in `AGENTS.md`.
+- [ ] Created files match the bundled seeds.
+- [ ] `scripts/learning_health.sh` runs without error.
+- [ ] Templates remain in `docs/rlp-architect/templates/` and were not copied to active artifact paths.
+
+## Examples
+
+### Fresh repository with no router
+
+Files created:
+
+```text
+docs/learnings/inbox.md
+docs/learnings/decisions.md
+scripts/capture_learnings.sh
+scripts/learning_health.sh
+docs/rlp-architect/templates/
+AGENTS.md   (minimal root router)
+```
+
+### Repository with an existing `AGENTS.md`
+
+The skill merges a short RLP route into `AGENTS.md` and reports unchanged files.
 
 ## Constraints
 
