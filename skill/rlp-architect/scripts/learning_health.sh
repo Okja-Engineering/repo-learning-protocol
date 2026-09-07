@@ -71,7 +71,12 @@ for f in "${always_on[@]}"; do
   [[ -f "$f" ]] || continue
   verify_by="$(awk '
     /^---$/ { in_frontmatter = !in_frontmatter; next }
-    in_frontmatter && /^verify_by:[[:space:]]*/ { sub(/^verify_by:[[:space:]]*/, ""); print; exit }
+    in_frontmatter && /^verify_by:[[:space:]]*/ {
+      sub(/^verify_by:[[:space:]]*/, "")
+      gsub(/^[[:space:]]*[\047\042]|[\047\042][[:space:]]*$/, "")
+      print
+      exit
+    }
   ' "$f")"
   [[ -z "$verify_by" ]] && continue
   verify_epoch="$(date -j -f "%Y-%m-%d" "$verify_by" +%s 2>/dev/null || date -d "$verify_by" +%s)"

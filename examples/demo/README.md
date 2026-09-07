@@ -4,13 +4,13 @@ This directory is a scratchpad for proving that `rlp-architect` installs and run
 
 ## One-time setup
 
-From the root of `repo-learning-protocol`:
+From the root of `repo-learning-protocol`, install the checkout as a global Devin plugin:
 
 ```bash
-scripts/install-skill.sh examples/demo
+scripts/install-skill.sh
 ```
 
-This creates `examples/demo/.agents/skills/rlp-architect/`. That directory is ignored if you later commit this demo folder; it should be regenerated on each test run.
+The demo repository receives only project-specific wiring when scaffold runs; the generalized skill remains in the plugin.
 
 ## Dogfood steps
 
@@ -51,9 +51,3 @@ Then:
 - `docs/learnings/inbox.md` contains both captured lines.
 - `docs/learnings/decisions.md` contains the triage decision.
 - `scripts/learning_health.sh` reports `naive-datetime: 2` and exits 0 when the budget is respected.
-
-## Cleanup
-
-```bash
-rm -rf examples/demo/.agents
-```

@@ -39,17 +39,45 @@ assert "SKILL.md frontmatter valid" true
 [[ -d skill/rlp-architect ]]
 assert "skill directory exists" true
 
-# Follows Agent Skills layout: SKILL.md, scripts/, references/, assets/.
+# Follows Devin plugin and Agent Skills layouts.
+[[ -f .devin-plugin/plugin.json ]]
+assert "plugin manifest exists" true
+python3 - <<'PY'
+import json
+with open('.devin-plugin/plugin.json') as f:
+    manifest = json.load(f)
+assert manifest['name'] == 'rlp-architect'
+assert manifest['skills'] == 'skill'
+PY
+assert "plugin manifest valid" true
 [[ -f skill/rlp-architect/SKILL.md ]]
 assert "SKILL.md exists" true
 [[ -d skill/rlp-architect/scripts ]]
 assert "scripts/ directory exists" true
 [[ -d skill/rlp-architect/references ]]
 assert "references/ directory exists" true
+[[ -d skill/rlp-architect/templates ]]
+assert "templates/ directory exists" true
 [[ -d skill/rlp-architect/assets ]]
 assert "assets/ directory exists" true
 [[ ! -d skill/rlp-architect/payload ]]
 assert "old payload/ directory removed" true
+[[ -f skill/rlp-architect/templates/example-rule.md ]]
+assert "knowledge template isolated" true
+[[ -f skill/rlp-architect/templates/api-conventions.md ]]
+assert "rule template isolated" true
+[[ -f skill/rlp-architect/templates/semgrep/rules.yml ]]
+assert "Semgrep template isolated" true
+[[ ! -e skill/rlp-architect/references/example-rule.md ]]
+assert "knowledge template removed from references" true
+[[ ! -e skill/rlp-architect/references/api-conventions.md ]]
+assert "rule template removed from references" true
+[[ ! -e skill/rlp-architect/assets/semgrep/rules.yml ]]
+assert "Semgrep template removed from assets" true
+[[ -f skill/rlp-architect/references/migration-guide.md ]]
+assert "migration guide exists" true
+[[ -x skill/rlp-architect/scripts/record_migration.sh ]]
+assert "migration helper executable" true
 
 # Skill bundle contains the expected files.
 file_count="$(find skill/rlp-architect -type f | wc -l | tr -d '[:space:]')"

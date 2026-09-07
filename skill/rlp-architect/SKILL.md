@@ -1,85 +1,84 @@
 ---
 name: rlp-architect
-description: Install, audit, and operate the Repository Learning Protocol (RLP) in any repository. Use when recurring agent mistakes reappear, when setting up a learning loop for coding agents, or when reviewing whether existing learnings are still firing. Provides scaffold, audit, and triage modes.
+description: Wire, audit, migrate, and operate the Repository Learning Protocol (RLP) in any repository. Use when recurring agent corrections should become enforced checks, regression tests, scoped context, or repo-specific procedures without growing always-on context. Provides scaffold, audit, triage, and migration guidance.
 license: MIT
 compatibility: POSIX shell (bash 3.2+ or zsh), git, and optional semgrep/pre-commit. No app-specific APIs required.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
   spec: stages/02-protocol/references/repository-learning-protocol.md
 ---
 
 # rlp-architect
 
-Operate the Repository Learning Protocol in the current repository. RLP turns recurring agent corrections into durable artifacts at the strongest tier that can hold them: enforced check > regression test > scoped context > skill > discard.
+Turn recurring corrections into the strongest durable tier that can hold them: enforced check > regression test > scoped context > skill > discard.
+
+RLP is a generalized plugin, not repository content. Install or update it globally with `devin plugins install owner/repo` and `devin plugins update rlp-architect`, or install the skill globally at `~/.config/devin/skills/rlp-architect/`. Never copy this bundle into a project's `.devin/skills/`; project skills are only for repository-specific procedures.
 
 ## Modes
 
-The user can invoke this skill with a mode argument. If they do not, ask which mode before acting.
+If the user did not specify a mode, ask before acting.
 
-- **scaffold** — install the RLP payload into the current repo
-- **audit** — check the repo against RLP's five invariants
-- **triage** — run the weekly triage session over the inbox
+- **scaffold** — add minimal, project-specific RLP wiring
+- **audit** — check promoted learnings against the five invariants
+- **triage** — route candidates and draft promotions
+- **migrate** — move a legacy learning system through normal triage
 
 ## scaffold
 
-1. Read the bundled skill layout:
-   - executable scripts in `scripts/`
-   - reference docs and templates in `references/`
-   - installable seed files in `assets/`
-2. Copy the seed files into the repo root (or a chosen subdirectory such as `rlp/`):
-   - `scripts/capture_learnings.sh` → `scripts/capture_learnings.sh`
-   - `scripts/learning_health.sh` → `scripts/learning_health.sh`
-   - `assets/inbox.md` → `docs/learnings/inbox.md`
-   - `assets/decisions.md` → `docs/learnings/decisions.md`
-   - `assets/semgrep/rules.yml` → `semgrep/rules.yml`
-   - `assets/tests/*` → `tests/`
-   - `assets/AGENTS.md.seed` → `AGENTS.md`
-   - `assets/pre-commit-config.yaml.seed` → merge into `.pre-commit-config.yaml` if one exists
-   - `references/0001-adopt-rlp.md` → `docs/adr/0001-adopt-rlp.md`
-   - `references/example-rule.md` → `docs/knowledge/example-domain/example-rule.md`
-   - `references/promote-learning.md` and `references/api-conventions.md` into the appropriate editor directory if it exists (`.devin/commands/` and `.devin/rules/`, `.cursor/commands/` and `.cursor/rules/`, `.claude/commands/` and `.claude/rules/`, etc.); otherwise place them under `docs/rlp-architect/` for manual use.
-3. Make all `*.sh` files executable.
-4. Run `tests/test_payload.sh` and confirm `0 failed`.
-5. Report what was installed and the suggested first triage date.
+Scaffold remains an invocation mode because repositories need wiring, but it does not install the skill payload.
+
+1. Discover before proposing writes:
+   - inspect `AGENTS.md`, `CONTEXT.md`, editor pointers, `.devin/`, `.claude/`, `.cursor/`, `stages/*/CONTEXT.md`, existing learning logs, tests, CI, linters, and Semgrep configuration;
+   - classify the repo as existing ICM, another routed workspace, or no router.
+2. Present the discovered structure and exact proposed file changes. Ask the user which editor directory to wire (`.devin/`, `.claude/`, `.cursor/`, or another location). Do not infer it from an installed tool.
+3. Ask for approval before writing.
+4. Create only missing project wiring:
+   - `docs/learnings/inbox.md` and `docs/learnings/decisions.md`;
+   - repo-local copies of `scripts/capture_learnings.sh` and `scripts/learning_health.sh` when CI or local commands need them;
+   - `docs/rlp-architect/templates/`, copied from bundled `templates/`, as inert starters for manual use during promotion;
+   - an editor command note that invokes the global/plugin skill, if approved;
+   - CI or pre-commit wiring only when the repository already uses that mechanism or the user approves adding it.
+5. Preserve existing architecture:
+   - merge a short RLP route into an existing `AGENTS.md` or root router; never replace the file;
+   - if stage contracts exist, point each promoted artifact from the relevant existing `stages/*/CONTEXT.md`;
+   - do not create an RLP stage in an existing ICM workspace;
+   - only when no router or ICM workspace exists, propose a minimal root router and `stages/00-learn/CONTEXT.md`.
+6. Make the operation idempotent: compare content before writing, preserve user text, do not duplicate routes, and report unchanged files.
+7. Never copy an unfilled template into an active artifact path such as `docs/knowledge/`, `.devin/rules/`, or `semgrep/rules.yml`. Templates are not promotions.
 
 ## audit
 
-1. Locate the installed RLP files:
-   - `scripts/learning_health.sh`
-   - `docs/learnings/inbox.md`
-   - `docs/learnings/decisions.md`
-   - `AGENTS.md`
-   - any always-on context files referenced by `AGENTS.md`
-2. Run `scripts/learning_health.sh -c` and capture the output.
-3. Verify the five RLP acceptance tests:
-   - **Repeat:** every promoted learning has a check that fires or a scoped context file that loads unprompted.
-   - **Provenance:** every durable artifact traces to the correction that earned it (`date`, `source`, `owner`, `scope`, `verify_by`) or a `decisions.md` line.
-   - **Deletion:** a single PR revert removes the learning.
-   - **Budget:** always-on context is ≤ the declared budget and the health script reports it.
-   - **Liveness:** every deterministic artifact has a recorded firing by its first prune.
-4. Report pass/fail per invariant and list stale artifacts or budget overruns.
+1. Locate the inbox, decisions log, health command, existing stage contracts, and real promoted artifacts.
+2. Exclude everything under a `templates/` directory and anything explicitly marked `TEMPLATE`. Placeholders do not satisfy an invariant.
+3. Pass only the always-on files to `learning_health.sh --always`: root routers (`AGENTS.md` or equivalent), editor pointers such as `CLAUDE.md`, and global/always-apply rules. ADRs, knowledge modules, Semgrep rules, tests, and skills are scoped and do not count toward the default 1,500-token budget.
+4. Verify each real promotion:
+   - **Repeat:** its check fires or its scoped context loads from the relevant contract/trigger.
+   - **Provenance:** it carries `date`, `source`, `owner`, `scope`, and `verify_by`, or traces in one hop through the decisions log.
+   - **Deletion:** reverting one promotion PR removes it.
+   - **Budget:** the measured always-on set is within the declared budget.
+   - **Liveness:** every deterministic artifact has a recorded firing by its first prune or an explicit re-justification.
+5. For migrated artifacts, reject `source` values that contain only a removed file path. Require real evidence plus the migration commit hash and original path.
+6. Report pass/fail per invariant, the measured always-on file list, stale promotions, and excluded template paths.
 
 ## triage
 
-1. Run `scripts/learning_health.sh` to see recurrence counts and stale artifacts.
-2. Read `docs/learnings/inbox.md`.
-3. Apply the router to each candidate, in order:
-   - security / data-corruption class → deterministic check + doc line, this week
-   - first occurrence → stays in inbox
-   - recurring (≥2) or expensive:
-     1. mechanically checkable? → lint / Semgrep / CI check
-     2. verifiable by execution? → regression test
-     3. stable convention or "why"? → scoped rule / ADR / knowledge module
-     4. reusable procedure? → skill / command note
-     5. still uncertain? → stays in inbox with expiry; default outcome is deletion
-4. Draft at most three promotion PRs. Each PR adds exactly one artifact plus the evidence that it fires.
-5. Append every decision to `docs/learnings/decisions.md`:
-   `- YYYY-MM-DD · <slug> · PROMOTED → stage NN / <paths> (PR) | DISCARDED — <reason> | HELD — <reason, expiry>`
-6. Report decisions made and remaining inbox count.
+1. Run the health command and read `docs/learnings/inbox.md`; the inbox is never agent context.
+2. Route each candidate in order:
+   - security or data corruption → deterministic check plus a scoped explanation this week;
+   - first occurrence → hold with expiry;
+   - recurring or expensive → mechanical check, regression test, scoped convention/ADR/knowledge module, repo-specific skill/command note, or discard.
+3. In an ICM workspace, attach scoped artifacts to the existing stage contract that consumes them. Use `docs/adr/` for decisions, `docs/knowledge/<domain>/` for tool conventions, editor/plugin procedures for reusable work, and CI/pre-commit for mechanical checks.
+4. Copy a bundled template only after choosing a promotion tier. Replace every placeholder, add evidence that it works, and keep one promotion per revertible PR.
+5. Draft at most three promotions and append every decision to `docs/learnings/decisions.md`.
+6. Nothing becomes durable until a human approves and merges it.
+
+## migrate
+
+Follow `references/migration-guide.md`. Use `scripts/record_migration.sh` to construct a source value containing real evidence, the resolved migration commit hash, and the original legacy path. Migration never bypasses triage.
 
 ## Constraints
 
-- The inbox is read by triage, never loaded as agent context.
-- Nothing is promoted without a human-merged PR.
-- The default outcome of any candidate is deletion from the inbox.
-- Always-on context stays under the declared budget; adding a line means deleting a line.
+- Determinism first; no vector store, knowledge graph, or ungated memory tier.
+- Every promoted artifact has provenance and an expiry.
+- Default outcome is discard.
+- Adding always-on context requires staying within the declared budget.

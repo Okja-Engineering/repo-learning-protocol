@@ -2,7 +2,11 @@
 set -euo pipefail
 
 source "$(dirname "$0")/helpers.sh"
-root="$(cd "$(dirname "$0")/../.." && pwd)"
+# Locate repo root by walking up until scripts/capture_learnings.sh exists.
+root="$(cd "$(dirname "$0")" && pwd)"
+while [[ "$root" != "/" && ! -f "$root/scripts/capture_learnings.sh" ]]; do
+  root="$(dirname "$root")"
+done
 cd "$root"
 
 tmp="$(mktemp -d)"
@@ -57,6 +61,17 @@ EOF
   assert_contains "$tmp/stale.txt" "verify_by 2026-01-01"
 }
 
+test_quoted_verify_by() {
+  cat > "$tmp/quoted-rule.md" <<'EOF'
+---
+verify_by: '2026-01-01'
+---
+some rule
+EOF
+  ./scripts/learning_health.sh -a "$tmp/quoted-rule.md" > "$tmp/quoted-stale.txt"
+  assert_contains "$tmp/quoted-stale.txt" "verify_by 2026-01-01"
+}
+
 test_check_stubs_fails() {
   printf 'one two three four five six seven eight nine ten.\n' > "$tmp/agents3.md"
   assert_rc 2 ./scripts/learning_health.sh -a "$tmp/agents3.md" -b 5 -c
@@ -77,6 +92,7 @@ test_import_from_file
 test_budget_ok
 test_budget_over
 test_stale_artifact
+test_quoted_verify_by
 test_check_stubs_fails
 test_report_includes_recurrence
 

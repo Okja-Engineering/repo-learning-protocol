@@ -8,26 +8,27 @@ A research-backed protocol for turning corrections to AI-agent work into durable
 - `stages/01-research/` — paper, evidence, and the 109-entry citation pool
 - `stages/02-protocol/` — the canonical RLP spec
 - `stages/03-skill/` — stage contract for the product
-- `skill/rlp-architect/` — the shipped **Agent Skill** (`SKILL.md`, `scripts/`, `references/`, `assets/`)
-- `scripts/install-skill.sh` — install `rlp-architect` into another repo
+- `.devin-plugin/plugin.json` — the Devin plugin manifest
+- `skill/rlp-architect/` — the shipped **Agent Skill** (`SKILL.md`, `scripts/`, `references/`, `templates/`, `assets/`)
+- `scripts/install-skill.sh` — install this checkout as a Devin plugin
 - `tests/test_skill.sh` — manifest and layout validation
-- `tests/test_walk.sh` — end-to-end install + scaffold + health tests
+- `tests/test_walk.sh` — end-to-end plugin + scaffold-wiring + health tests
 - `docs/rlp-architect-construction-playbook.md` — the full construction playbook
 - `research/RESEARCH-PLAN.md` — open questions and validation methods
 
 ## Status
 
-**v0.2.0** — `rlp-architect` is a cross-tool Agent Skill in the open `agentskills.io` format. It has been tested via fresh-clone and install walk tests.
+**v0.3.0** — `rlp-architect` ships as a Devin plugin containing a cross-tool Agent Skill in the open `agentskills.io` format.
 
-## Installing the skill in another repo
+## Installing the plugin
 
-From this repo:
+Install the published repository globally:
 
 ```bash
-scripts/install-skill.sh /path/to/target-repo
+devin plugins install owner/repo
 ```
 
-This copies `skill/rlp-architect/` into the target repo at `.agents/skills/rlp-architect/`. Any agent that scans `.agents/skills/` (Devin, Cursor, Claude) will expose `/rlp-architect`.
+For local development, run `scripts/install-skill.sh`. Update a published install with `devin plugins update rlp-architect`. Scaffold writes only project-specific RLP wiring; it does not copy the generalized skill into the target repository.
 
 ## Using the skill
 
@@ -37,7 +38,7 @@ In the target repo, invoke the skill with a mode:
 /rlp-architect scaffold
 ```
 
-Installs the RLP loop into the target repo: scripts, learning inbox, decisions log, sample ADR, scoped rule, Semgrep rule, and health checks.
+Discovers the repository, asks which editor directory to use, and proposes minimal wiring: scripts, learning logs, inert templates, router references, and approved CI hooks. Existing ICM stage contracts are extended rather than duplicated.
 
 ```text
 /rlp-architect audit
