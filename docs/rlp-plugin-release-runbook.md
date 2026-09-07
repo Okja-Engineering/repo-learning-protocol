@@ -399,3 +399,14 @@ Do not combine pass records. The point is to preserve what was proven at each bo
 **Findings to triage:** The health script has no automatic exclusion logic for templates or scoped artifacts; the agent performing `audit` must implement the exclusion by selecting files. This is by design per SKILL.md but could be surprising.  
 **Human decision:** Continue to Pass 6 — One-learning migration.  
 **Next pass authorized:** Pass 6 — One-learning migration.
+
+### Pass 6 record
+
+**Pass:** Pass 6 — One-learning migration  
+**Commit:** (no source change; verification only)  
+**Outcome:** One legacy learning was migrated through the full loop: a real historical commit was used as evidence, `record_migration.sh` produced a durable `source` value, the candidate was promoted to a scoped knowledge module, and reverting the promotion PR removed the artifact completely.  
+**Evidence:** In a temp copy of the Content Engine, selected the `business-model-research` candidate from `docs/learnings/inbox.md` (original source `.vault/sources/luxury-content-commerce-research-brief.v1.0.md`, removed in commit `6b3db1e`). Ran `record_migration.sh` from the canonical skill to produce: `source: "commit 6b3db1e removed .vault and replaced with RLP; migrated in commit 6b3db1e6c6093571d63eb10e9b5cd91bde8cb660 from .vault/sources/luxury-content-commerce-research-brief.v1.0.md"`. Created `docs/knowledge/business-model-research.md` with date, source, owner, scope, verify_by, and appended the decision to `docs/learnings/decisions.md`. Committed, confirmed the artifact existed, ran `git revert --no-commit HEAD`, confirmed the artifact was removed.  
+**Findings repaired:** None.  
+**Findings to triage:** None.  
+**Human decision:** Continue to Pass 7 — Public-readiness review.  
+**Next pass authorized:** Pass 7 — Public-readiness review.
