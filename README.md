@@ -4,6 +4,8 @@
 
 A research-backed protocol for turning corrections to AI-agent work into durable repository improvements — checks, tests, scoped context, and skills — so the same mistake is never bought twice. The repository is the only trainable component when model weights are frozen.
 
+Read the research and design rationale first: [`MANIFESTO.md`](MANIFESTO.md).
+
 ## What's here
 
 ### For users of the plugin

@@ -4,8 +4,8 @@ One stage per session. Read the stage's `CONTEXT.md` before acting; its Inputs t
 
 | You want to… | Go to |
 |---|---|
-| Understand why RLP exists | `PREMISE.md`, then `stages/01-research/references/` |
-| Write or revise the paper / evidence | `stages/01-research/` |
+| Understand why RLP exists | `MANIFESTO.md`, then `PREMISE.md`, then `stages/01-research/references/` |
+| Write or revise the manifesto / paper / evidence | `stages/01-research/` |
 | Change the protocol itself (the spec) | `stages/02-protocol/` |
 | Change the skill or its payload (the product) | `stages/03-skill/` |
 | Triage feedback about RLP or this tool | `stages/04-field/` |
@@ -20,6 +20,7 @@ Stage 04 is ICM §6.3's edit-tracking loop made real: recurring corrections to t
 
 | Resource | Location | Contents |
 |----------|----------|----------|
+| Research manifesto | `MANIFESTO.md` | Public-facing rationale and design posture |
 | Research premise | `PREMISE.md` | The thesis, evidence, and citations |
 | Construction playbook | `docs/history/construction-playbook.md` | The full build playbook |
 | Research plan | `stages/01-research/references/RESEARCH-PLAN.md` | Open questions and validation methods |
