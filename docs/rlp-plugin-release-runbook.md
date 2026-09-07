@@ -410,3 +410,14 @@ Do not combine pass records. The point is to preserve what was proven at each bo
 **Findings to triage:** None.  
 **Human decision:** Continue to Pass 7 — Public-readiness review.  
 **Next pass authorized:** Pass 7 — Public-readiness review.
+
+### Pass 7 record
+
+**Pass:** Pass 7 — Public-readiness review  
+**Commit:** `52a3f14`  
+**Outcome:** The repository is clean of secrets and private references; package metadata is truthful; LICENSE (MIT) added; reader path is clear. Public-readiness gate passes.  
+**Evidence:** Scanned source for `password`, `secret`, `token`, `api_key`, `localhost`, `file://`, `/Users/`, `/home/`, `TODO`, `FIXME`, `owner/repo`, `your-org`, and JWT-like strings. No real findings. Checked git history with `git log --all -p` for the same patterns; no real findings. Verified manifest version `0.3.0`, skill version `0.3.0`, README version `v0.3.0`. Invocation syntax is `/rlp-architect:rlp-architect <mode>`. Dependencies are POSIX shell, git, optional semgrep/pre-commit. Added `LICENSE` (MIT). Replaced `owner/repo` placeholder with `Okja-Engineering/repo-learning-protocol` in README, installer, SKILL.md, and runbook. All tests and checksums pass.  
+**Findings repaired:** Added MIT LICENSE; replaced `owner/repo` placeholder; updated SHA256SUMS to include LICENSE.  
+**Findings to triage:** None.  
+**Human decision:** Continue to Pass 8 — Push and publish (requires explicit authorization).  
+**Next pass authorized:** Pass 8 — Push and publish.
