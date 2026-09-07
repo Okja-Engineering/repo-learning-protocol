@@ -14,6 +14,7 @@ A research-backed protocol for turning corrections to AI-agent work into durable
 - `tests/test_skill.sh` — manifest and layout validation
 - `tests/test_walk.sh` — end-to-end plugin + scaffold-wiring + health tests
 - `docs/rlp-architect-construction-playbook.md` — the full construction playbook
+- `docs/rlp-plugin-release-runbook.md` — small, gated passes from local plugin to public field trial
 - `research/RESEARCH-PLAN.md` — open questions and validation methods
 
 ## Status
