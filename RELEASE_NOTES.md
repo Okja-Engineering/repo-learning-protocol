@@ -14,7 +14,7 @@
 - **Standalone skill portability.** Each skill is self-contained. If you use Claude, Cursor, Codex, or another agent that loads Agent Skills, copy the folders under `skills/` into your agent's skill directory.
 - **Cleaner repo surface.** The long research premise is now in `RLP.md`; `README.md` is the concise product entry point. The internal ICM workspace scaffolding was removed from the plugin repo.
 - **Clear boundaries.** See [`.out-of-scope.md`](.out-of-scope.md) for what RLP deliberately does not do: no model tuning, no ungated memory, no auto-promotion, no custom runtime.
-- **Cross-agent install.** In addition to the Devin plugin, the skills can now be installed via the open `npx skills` CLI into Claude Code, Codex, Cursor, OpenCode, and 60+ Agent Skills-compatible agents.
+- **Cross-agent install (v0.5).** In the future, the skills may be installable via the open `npx skills` CLI. For v0.4.0, use the Devin plugin or manual copy. the skills can now be installed via the open `npx skills` CLI into Claude Code, Codex, Cursor, OpenCode, and 60+ Agent Skills-compatible agents.
 - **MIT license.**
 
 ### Install

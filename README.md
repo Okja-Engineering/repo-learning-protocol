@@ -31,11 +31,11 @@ Four focused skills, each doing one job:
 
 ## Install
 
-Three ways in, three philosophies.
+Two ways in, two philosophies.
 
-### 1. Managed plugin (Devin)
+### 1. Managed plugin (Devin) — recommended
 
-Install the whole set as a Devin plugin. You subscribe to updates; the skills stay read-only and versioned.
+Install the whole set as a Devin plugin. The `rlp-architect` namespace keeps the four skills grouped and avoids name collisions with other skills you may have installed.
 
 ```bash
 devin plugins install Okja-Engineering/repo-learning-protocol
@@ -44,24 +44,9 @@ devin plugins info rlp-architect
 
 Update with `devin plugins update rlp-architect`.
 
-### 2. Cross-agent installer (Claude Code, Codex, Cursor, OpenCode, and 60+ others)
+### 2. Standalone manual copy (any agent)
 
-Use the open [`skills` CLI](https://github.com/vercel-labs/skills) to install the skills you want into the agent you're using. It works from any GitHub repo that follows the Agent Skills layout.
-
-```bash
-# List the available skills
-npx skills add Okja-Engineering/repo-learning-protocol --list
-
-# Install all four skills to the agents you choose
-npx skills add Okja-Engineering/repo-learning-protocol
-
-# Or install just one skill globally
-npx skills add Okja-Engineering/repo-learning-protocol --skill scaffold -g
-```
-
-### 3. Standalone manual copy (any agent)
-
-Copy only the skills you want into your agent's skill directory. You own the files and pull updates when you choose.
+Copy only the skills you want into your agent's skill directory. You own the files and pull updates when you choose. Because the skill names (`scaffold`, `audit`, `triage`, `migrate`) are generic, this path works best when you control the skill namespace of the target agent.
 
 ```bash
 cp -R skills/scaffold ~/.claude/skills/scaffold
@@ -75,31 +60,29 @@ The exact path depends on the agent (`~/.claude/skills/`, `.cursor/skills/`, `.c
 ### Local checkout
 
 ```bash
-# Devin
 devin plugins install .
-
-# skills CLI
-npx skills add file:///path/to/repo-learning-protocol
 ```
 
-## After installing
+## Use
 
-How you invoke a skill depends on how you installed it:
+With the Devin plugin:
 
-| Install method | Invoke a skill |
-|---|---|
-| Devin plugin | `/rlp-architect:scaffold`, `/rlp-architect:audit`, `/rlp-architect:triage`, `/rlp-architect:migrate` |
-| `npx skills` or manual copy | `/scaffold`, `/audit`, `/triage`, `/migrate` (or your agent's equivalent skill-name trigger) |
+```text
+/rlp-architect:scaffold
+/rlp-architect:audit
+/rlp-architect:triage
+/rlp-architect:migrate
+```
 
-`npx skills` installs each skill as a standalone skill with its own name. The `rlp-architect` namespace only exists inside the Devin plugin.
+If you copied a skill into your agent's skill directory, invoke it by skill name (`/scaffold`, `/audit`, `/triage`, `/migrate` — exact syntax depends on the agent).
 
 ## Getting started
 
-1. **Scaffold** a target repository: `/rlp-architect:scaffold` (Devin plugin) or `/scaffold` (standalone skill). This creates `docs/learnings/inbox.md`, `docs/learnings/decisions.md`, capture/health scripts, and inert promotion templates — only the wiring, never the generalized skill.
+1. **Scaffold** a target repository: `/rlp-architect:scaffold`. This creates `docs/learnings/inbox.md`, `docs/learnings/decisions.md`, capture/health scripts, and inert promotion templates — only the wiring, never the generalized skill.
 2. **Capture** corrections as one-line candidates in the inbox, either by hand or with the copied `capture_learnings.sh` script.
-3. **Triage** weekly: `/rlp-architect:triage` (Devin plugin) or `/triage` (standalone). Second occurrence is the signal; security or data-corruption issues route immediately.
-4. **Audit** before releases or after promotions: `/rlp-architect:audit` (Devin plugin) or `/audit` (standalone) checks the five invariants.
-5. **Migrate** legacy lessons only when you have real evidence: `/rlp-architect:migrate` (Devin plugin) or `/migrate` (standalone).
+3. **Triage** weekly: `/rlp-architect:triage`. Second occurrence is the signal; security or data-corruption issues route immediately.
+4. **Audit** before releases or after promotions: `/rlp-architect:audit` checks the five invariants.
+5. **Migrate** legacy lessons only when you have real evidence: `/rlp-architect:migrate`.
 
 ## What RLP does not do
 
