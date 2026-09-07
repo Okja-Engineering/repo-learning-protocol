@@ -26,4 +26,4 @@ Change `skill/rlp-architect/SKILL.md` and `payload/` only here, only to match th
 | Skill changes | `skill/rlp-architect/` | SKILL.md + payload |
 | Test changes | `tests/` | Python tests |
 
-Release = tag + updated `SHA256SUMS`.
+Release = tag.
