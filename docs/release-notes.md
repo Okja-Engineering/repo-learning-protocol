@@ -96,5 +96,20 @@ Append-only record for each completed release pass.
 **Evidence:** `tests/test_skill.sh` 24 passed; `tests/test_walk.sh` 14 passed; `skill/rlp-architect/assets/tests/test_payload.sh` 12 passed.  
 **Findings repaired:** README title changed to `rlp-architect`; "What's here" split by audience; added `devin plugins info` verification; explained `/plugin:skill` invocation; polished v0.3.0 status; listed LICENSE; replaced relative `metadata.spec` with canonical URL comment in SKILL.md.  
 **Findings to triage:** None.  
+**Human decision:** Continue to skill behavior pass.  
+**Next pass authorized:** Skill behavior pass.
+
+### Skill behavior pass (pre-Pass 8)
+
+**Commit:** `b28e93c`  
+**Outcome:** All four skill modes behave as documented on representative target repositories: scaffold is minimal and idempotent, audit respects always-on/scoped classification, triage produces revertible promotions, and migration produces durable provenance. One real bug in `learning_health.sh` was found and fixed.  
+**Evidence:**
+- Empty-repo scaffold produced 10 files, health reported `0 / 1500 tokens (OK)`, and a re-scaffold produced no diff.
+- Existing staged workspace (Content Engine copy) scaffold produced no writes and no diff.
+- Audit on the scaffolded repo: always-on budget 186/1500 OK; templates correctly excluded (adding them increased count only because deliberately passed).
+- Triage: two `naive-datetime` captures promoted to `docs/knowledge/naive-datetime.md`; one `escrow-rounding` held; revert removed the promoted artifact.
+- Migration: legacy `.vault/insights/legacy.md` removed, `record_migration.sh` produced a `source` value with commit hash and original path; promotion to `docs/knowledge/input-validation.md` created; revert removed it.  
+**Findings repaired:** `learning_health.sh` now validates `verify_by` format before parsing and warns on placeholders instead of crashing on macOS.  
+**Findings to triage:** None.  
 **Human decision:** Continue to next review pass or make repo public.  
 **Next pass authorized:** (pending user choice)
