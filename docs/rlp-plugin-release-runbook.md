@@ -377,3 +377,14 @@ Do not combine pass records. The point is to preserve what was proven at each bo
 **Findings to triage:** None.  
 **Human decision:** Continue to Pass 4 — Existing-workspace discovery.  
 **Next pass authorized:** Pass 4 — Existing-workspace discovery.
+
+### Pass 4 record
+
+**Pass:** Pass 4 — Existing-workspace discovery  
+**Commit:** (no source change; verification only)  
+**Outcome:** Scaffold on a disposable Content Engine copy correctly classifies the repo as an existing staged workspace and proposes no writes. The temp copy already has router, editor pointer, 10 stage contracts, learning logs, RLP scripts, and an ADR. The canonical skill must not add `stages/00-learn/` or replace `AGENTS.md` in this case.  
+**Evidence:** Created temp copy of Content Engine at `/tmp/content-engine-pass4-77067`; inspected `AGENTS.md`, `CLAUDE.md`, `CONTEXT.md`, `stages/*/CONTEXT.md`, `docs/learnings/`, `docs/adr/`, `scripts/`, and `.devin/`. Simulated scaffold proposal: no changes. `git status --short` was empty; `./scripts/learning_health.sh -i docs/learnings/inbox.md` ran successfully.  
+**Findings repaired:** None.  
+**Findings to triage:** The Content Engine has a project-local skill copy at `.devin/skills/rlp-architect/`. The canonical RLP runbook specifies that the generalized skill should not be copied into project configuration; this is existing field state, not a scaffold defect, but should be migrated or removed during Pass 9.  
+**Human decision:** Continue to Pass 5 — Audit semantics.  
+**Next pass authorized:** Pass 5 — Audit semantics.
