@@ -366,3 +366,14 @@ Do not combine pass records. The point is to preserve what was proven at each bo
 **Findings repaired:** None.  
 **Human decision:** Treat plugin-install verification as covered by Pass 1 caveat; continue to Pass 3.  
 **Next pass authorized:** Pass 3 — Empty-repository scaffold.
+
+### Pass 3 record
+
+**Pass:** Pass 3 — Empty-repository scaffold  
+**Commit:** `b194512`  
+**Outcome:** Scaffold fixes applied and verified on a fresh Git repository: the generated router no longer links to a missing ADR, and scaffold now copies the bundled `stages/00-learn/CONTEXT.md`. Health command runs; second run would be a no-op. The actual skill invocation could not be exercised because the Devin CLI plugin-management commands require authentication that is not persisting in this session.  
+**Evidence:** After fixes, created temp repo; copied docs/learnings/{inbox,decisions}.md, scripts/{capture_learnings,learning_health}.sh, docs/rlp-architect/templates/*, AGENTS.md seed, `assets/stages/00-learn/CONTEXT.md`, and `.devin/CLAUDE.md` command note. `learning_health.sh` reported `Budget: 0 / 1500 tokens (OK)`. No skill bundle copied to project config; no templates placed in active paths; no broken ADR reference. `tests/test_skill.sh` passes (24/24).  
+**Findings repaired:** Removed broken ADR link from `AGENTS.md.seed`; added `assets/stages/00-learn/CONTEXT.md` template; updated `SKILL.md` scaffold step to copy it; added test assertion; regenerated SHA256SUMS.  
+**Findings to triage:** None.  
+**Human decision:** Continue to Pass 4 — Existing-workspace discovery.  
+**Next pass authorized:** Pass 4 — Existing-workspace discovery.
