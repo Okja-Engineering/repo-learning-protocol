@@ -134,14 +134,15 @@ Append-only record for each completed release pass.
 
 ### Research Publication Pass (pre-Pass 8)
 
-**Commit:** `4442183`  
-**Outcome:** Added a public-facing research manifesto (`MANIFESTO.md`) that explains the North Star, how the protocol was derived from the evidence, the 60/30/10 design posture, the promotion ladder, the five invariants, and how the tooling implements the protocol. Linked it from `README.md`, `CLAUDE.md`, and `CONTEXT.md` so it is the first document a public reader sees.  
+**Commit:** `dc23fb0` (initial manifesto at `4442183`, then merged into README)  
+**Outcome:** `README.md` is now the public-facing research manifesto, modeled on `RinDig/Interpretable-Context-Methodology` and `RinDig/cost-of-remembering`. It explains the North Star, how the protocol was derived from the evidence, the 60/30/10 design posture, the promotion ladder, the five invariants, what RLP rejects, and how the tooling implements the protocol. Detailed usage and layout follow the manifesto. The separate `MANIFESTO.md` was removed to avoid duplication.  
 **Evidence:**
-- Studied `icm-architect` README as a model: short manifesto, paper/community links, what-it-does, layout.
-- Drafted `MANIFESTO.md` (~115 lines) covering problem, evidence-based decisions, rejected alternatives, protocol, invariants, tooling, and validation posture.
-- Cross-checked against `skill/rlp-architect` (`skills/rlp/SKILL.md`): promotion ladder, invariants, rejection list, capture→triage→promote→measure→retire flow, and human-gated promotions all align.
+- Studied `RinDig/Interpretable-Context-Methodology/README.md` and `RinDig/cost-of-remembering/README.md` as models: lead with concept, then why it exists, design principles, how it works, then install/use/layout.
+- Drafted manifesto content covering problem, evidence-based decisions, rejected alternatives, protocol, invariants, tooling, and validation posture.
+- Merged it into `README.md` and removed `MANIFESTO.md`.
+- Cross-checked against `skills/rlp/SKILL.md`: promotion ladder, invariants, rejection list, capture→triage→promote→measure→retire flow, and human-gated promotions all align.
 - All tests pass: `tests/test_skill.sh` 24 passed; `tests/test_walk.sh` 14 passed; `skills/rlp/assets/tests/test_payload.sh` 12 passed.  
-**Findings repaired:** Created `MANIFESTO.md`; updated `README.md`, `CLAUDE.md`, and `CONTEXT.md` routing/shared-resources tables.  
+**Findings repaired:** Rewrote `README.md` as public manifesto; removed `MANIFESTO.md`; updated `CLAUDE.md` and `CONTEXT.md` to point at `README.md` for the research rationale.  
 **Findings to triage:** None.  
 **Human decision:** Continue to final user-experience passes.  
 **Next pass authorized:** Final UX pass #1.
