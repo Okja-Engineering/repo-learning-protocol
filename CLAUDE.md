@@ -8,7 +8,7 @@ Two methodologies are layered here: **ICM** (folder structure as agent architect
 
 | Path | Purpose |
 |------|---------|
-| `MANIFESTO.md` | Public-facing research manifesto and design rationale |
+| `README.md` | Public-facing research manifesto and design rationale |
 | `PREMISE.md` | Full research premise with evidence and citations |
 | `CONTEXT.md` | Task routing (Layer 1). Read it next. |
 | `stages/01-research/` | Paper, evidence, citation pool |
