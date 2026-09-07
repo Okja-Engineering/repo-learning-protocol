@@ -2,7 +2,7 @@
 
 ## What this is
 
-A research plan for developing the Repo Learning Protocol (RLP) into a rigorous, evidence-backed practice with a community of practitioners. The RLP playbook (see `docs/rlp-architect-construction-playbook.md`) provides the foundation — the protocol spec, the citation pool, the scripts, and the skill. This plan defines what research we still need to do, what claims we need to validate, and what the research brief will say.
+A research plan for developing the Repo Learning Protocol (RLP) into a rigorous, evidence-backed practice with a community of practitioners. The RLP playbook (see `docs/history/construction-playbook.md`) provides the foundation — the protocol spec, the citation pool, the scripts, and the skill. This plan defines what research we still need to do, what claims we need to validate, and what the research brief will say.
 
 ## The thesis (one paragraph)
 

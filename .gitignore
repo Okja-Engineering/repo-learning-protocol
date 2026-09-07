@@ -1,6 +1,1 @@
-# Demo install artifacts
-examples/demo/.agents/
-examples/demo/scripts/
-examples/demo/docs/
-examples/demo/semgrep/
-examples/demo/tests/
+# No build artifacts or local state tracked at the workspace root.

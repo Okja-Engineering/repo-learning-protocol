@@ -106,7 +106,7 @@ The second occurrence is the signal. Once is noise; twice is a pattern. This pre
 
 **Confidence: PLAUSIBLE.** The "second occurrence" rule is grounded in harness engineering practice [D66] and Qodo's mining of only accepted, repeated comments. But no controlled study validates this specific threshold.
 
-**Open question (Q4):** Does the second-occurrence rule prevent over-promotion? See `research/RESEARCH-PLAN.md`.
+**Open question (Q4):** Does the second-occurrence rule prevent over-promotion? See `stages/01-research/references/RESEARCH-PLAN.md`.
 
 ### 3.3 Provenance and retirement
 
@@ -120,7 +120,7 @@ Always-on context ≤ ~1,500 tokens (root AGENTS.md plus any always-on rules). T
 
 **Confidence: PLAUSIBLE.** The concept is supported; the specific number is a design choice.
 
-**Open question (Q2):** Is 1,500 tokens the right budget? See `research/RESEARCH-PLAN.md`.
+**Open question (Q2):** Is 1,500 tokens the right budget? See `stages/01-research/references/RESEARCH-PLAN.md`.
 
 ### 3.5 Liveness
 
@@ -132,7 +132,7 @@ Every promoted deterministic artifact must observably fire by its first prune �
 
 ## 4. What we don't know yet
 
-The composition is evidenced; the *composite* is not. No controlled study evaluates this exact protocol end-to-end. The open questions are documented in `research/RESEARCH-PLAN.md`:
+The composition is evidenced; the *composite* is not. No controlled study evaluates this exact protocol end-to-end. The open questions are documented in `stages/01-research/references/RESEARCH-PLAN.md`:
 
 1. **Does the tier ladder prevent recurrence?** — field data needed
 2. **Is 1,500 tokens the right budget?** — empirical testing needed

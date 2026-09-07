@@ -8,8 +8,8 @@ Produce or revise the research that grounds RLP — the paper, evidence summarie
 |--------|--------------|---------------|-----|
 | Reference | `PREMISE.md` | Full file | The research premise |
 | Reference | `stages/01-research/references/REFERENCES.md` | Full file | The citation pool (109 entries) |
-| Reference | `research/RESEARCH-PLAN.md` | Full file | Open questions and validation methods |
-| Reference | `docs/rlp-architect-construction-playbook.md` | PREMISE.md block | The original premise with citations |
+| Reference | `stages/01-research/references/RESEARCH-PLAN.md` | Full file | Open questions and validation methods |
+| Reference | `docs/history/construction-playbook.md` | PREMISE.md block | The original premise with citations |
 | Previous stage | `stages/04-field/output/` | Latest triage notes | Field feedback that raises evidence gaps |
 
 ## Process

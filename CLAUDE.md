@@ -17,8 +17,8 @@ Two methodologies are layered here: **ICM** (folder structure as agent architect
 | `scripts/install-skill.sh` | Install the local checkout through `devin plugins install` |
 | `stages/04-field/` | RLP applied to RLP: triage of field feedback |
 | `docs/learnings/` | This repo's own learning loop (stage 04 reads it) |
-| `docs/rlp-architect-construction-playbook.md` | The construction playbook |
-| `research/RESEARCH-PLAN.md` | Open questions and validation methods |
+| `docs/history/construction-playbook.md` | The construction playbook |
+| `stages/01-research/references/RESEARCH-PLAN.md` | Open questions and validation methods |
 | `references/` | Supporting evidence and citation pool |
 | `tests/` | Proof suite (skill manifest + payload tests) |
 
@@ -31,8 +31,8 @@ Two methodologies are layered here: **ICM** (folder structure as agent architect
 | Change the protocol itself | `stages/02-protocol/CONTEXT.md` |
 | Change the skill or its payload | `stages/03-skill/CONTEXT.md` |
 | Triage feedback about RLP | `stages/04-field/CONTEXT.md` |
-| See the construction playbook | `docs/rlp-architect-construction-playbook.md` |
-| See the research plan | `research/RESEARCH-PLAN.md` |
+| See the construction playbook | `docs/history/construction-playbook.md` |
+| See the research plan | `stages/01-research/references/RESEARCH-PLAN.md` |
 
 ## Working rule
 
