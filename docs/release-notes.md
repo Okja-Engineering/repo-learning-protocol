@@ -78,3 +78,13 @@ Append-only record for each completed release pass.
 **Findings to triage:** None.  
 **Human decision:** Continue to Pass 8 — Push and publish (requires explicit authorization).  
 **Next pass authorized:** Pass 8 — Push and publish.
+
+### Cleanup before Pass 8
+
+**Commit:** `424a12a`  
+**Outcome:** Removed low-value and confusing artifacts before publication; fixed ICM drift and stage contract accuracy.  
+**Evidence:** `tests/test_skill.sh` 24 passed; `tests/test_walk.sh` 14 passed; `skill/rlp-architect/assets/tests/test_payload.sh` 12 passed.  
+**Findings repaired:** Removed `SHA256SUMS`; archived construction playbook to `docs/history/`; removed `examples/demo/`; moved `research/RESEARCH-PLAN.md` to `stages/01-research/references/`; split pass records into `docs/release-notes.md`; fixed `stages/03-skill/CONTEXT.md` to reference shell tests; updated all cross-references.  
+**Findings to triage:** None.  
+**Human decision:** Retag `v0.3.0` at this commit and push.  
+**Next pass authorized:** Pass 8 — Push and publish.
