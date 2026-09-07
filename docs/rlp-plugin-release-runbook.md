@@ -356,3 +356,13 @@ Do not combine pass records. The point is to preserve what was proven at each bo
 **Findings repaired:** Invocation syntax `/rlp-architect` → `/rlp-architect:rlp-architect`; installer changed to `devin plugins install --local`; test asserts `--local`; SKILL.md and migration guide use "staged workspace" instead of "ICM workspace".  
 **Human decision:** Proceed without re-running authenticated plugin-management commands and continue to Pass 2.  
 **Next pass authorized:** Pass 2 — Clean-room package.
+
+### Pass 2 record
+
+**Pass:** Pass 2 — Clean-room package  
+**Commit:** `bcbea61`  
+**Outcome:** Clean-room copy of the repository passes the entire local verification suite from the README instructions; no package-boundary or path failures found. The plugin-install step (`scripts/install-skill.sh`) could not be exercised because it requires a logged-in Devin CLI.  
+**Evidence:** Copied repo to a temp directory; ran `tests/test_skill.sh` (23 passed), `tests/test_walk.sh` (14 passed), `skill/rlp-architect/assets/tests/test_payload.sh` (12 passed), and `shasum -a 256 -c SHA256SUMS` (all OK).  
+**Findings repaired:** None.  
+**Human decision:** Treat plugin-install verification as covered by Pass 1 caveat; continue to Pass 3.  
+**Next pass authorized:** Pass 3 — Empty-repository scaffold.
