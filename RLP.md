@@ -85,7 +85,7 @@ Capture a correction in your own repository, route it through triage, and open a
 
 ## Evidence and detailed citations
 
-*Condensed from the Repository Learning Protocol spec v0.2 and its evidence review (Aug 2026). Nothing below claims novelty beyond the assembly; sources are named throughout.*
+*Condensed from earlier RLP spec v0.2 and its evidence review (Aug 2026). Nothing below claims novelty beyond the assembly; sources are named throughout.*
 
 ### Thesis
 

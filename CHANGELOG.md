@@ -5,6 +5,7 @@ All notable changes to `rlp-architect`.
 ## Unreleased
 
 - Restructured plugin into four standalone Agent Skills: `scaffold`, `audit`, `triage`, `migrate`.
+- Changed invocation from `/rlp-architect:rlp <mode>` to `/rlp-architect:<mode>`; the skill name is the mode.
 - Dropped the ICM workspace layer (`AGENTS.md`, `CLAUDE.md`, `CONTEXT.md`, `stages/`) from the plugin repo; `RLP.md` now carries the rationale.
 - Merged `PREMISE.md` into `RLP.md` as the "Evidence and detailed citations" section.
 - Separated plugin tests from scaffolded assets; payload tests moved to `tests/payload/`.
@@ -34,7 +35,7 @@ All notable changes to `rlp-architect`.
 - Added templates for promoted artifacts (rules, API conventions, Semgrep).
 - Added walk tests covering install, scaffold, capture/health, budget, and migration provenance.
 - Added 109-entry citation pool and `PREMISE.md` research rationale.
-- Documented the RLP spec in `stages/02-protocol/references/repository-learning-protocol.md`.
+- Documented the RLP spec in `stages/02-protocol/references/repository-learning-protocol.md` (since removed; the spec content lives in `RLP.md`).
 
 ## 0.1.0 — 2026-09-05
 

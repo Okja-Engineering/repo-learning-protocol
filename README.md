@@ -70,6 +70,8 @@ rlp-architect/
 │   ├── test_skill.sh           # manifest and layout validation
 │   └── test_walk.sh            # end-to-end plugin + scaffold + health tests
 ├── RLP.md                      # protocol rationale and design principles
+├── CHANGELOG.md                # version history
+├── RELEASE_NOTES.md            # user-facing release summaries
 └── LICENSE                     # MIT
 ```
 
