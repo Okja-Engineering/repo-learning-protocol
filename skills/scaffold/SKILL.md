@@ -4,7 +4,7 @@ description: Add minimal, project-specific Repository Learning Protocol (RLP) wi
 license: MIT
 compatibility: POSIX shell (bash 3.2+ or zsh), git, and optional semgrep/pre-commit.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # scaffold

@@ -138,7 +138,7 @@ Both must report `0 failed`.
 
 ## Status
 
-**v0.3.0** — ships as a plugin for Devin, Claude Code, Codex, and Cursor, with Agent Skills in the open [`agentskills.io`](https://agentskills.io) format.
+**v0.4.0** — ships as a plugin for Devin, Claude Code, Codex, and Cursor, with Agent Skills in the open [`agentskills.io`](https://agentskills.io) format.
 
 ## Lineage
 

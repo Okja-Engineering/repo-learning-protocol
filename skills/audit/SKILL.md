@@ -4,7 +4,7 @@ description: Check a Repository Learning Protocol (RLP) installation against the
 license: MIT
 compatibility: POSIX shell (bash 3.2+ or zsh), git.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # audit

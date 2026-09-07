@@ -4,7 +4,7 @@ description: Route Repository Learning Protocol (RLP) inbox candidates through t
 license: MIT
 compatibility: POSIX shell (bash 3.2+ or zsh), git.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # triage

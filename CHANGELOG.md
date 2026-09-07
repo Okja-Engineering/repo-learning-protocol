@@ -4,6 +4,14 @@ All notable changes to `rlp-architect`.
 
 ## Unreleased
 
+## 0.5.0 — planned
+
+- Additional distribution paths as the ecosystem stabilizes (e.g. `npx skills` or agent marketplaces).
+
+## 0.4.0 — 2026-09-10
+
+**Public release as a multi-agent plugin.**
+
 - Restructured plugin into four standalone Agent Skills: `scaffold`, `audit`, `triage`, `migrate`.
 - Changed invocation from `/rlp-architect:rlp <mode>` to `/rlp-architect:<mode>`; the skill name is the mode.
 - Dropped the ICM workspace layer (`AGENTS.md`, `CLAUDE.md`, `CONTEXT.md`, `stages/`) from the plugin repo; `RLP.md` now carries the rationale.
@@ -13,16 +21,8 @@ All notable changes to `rlp-architect`.
 - Validated the plugin boundary in a production field repository by removing its project-local generalized-skill copy and routing it to the canonical plugin.
 - Rewrote `README.md` with a problem/skill mapping, skills catalog, and clearer install story (Devin plugin and manual copy).
 - Added `.out-of-scope.md` documenting deliberate boundaries and claims RLP does not make.
-- Added native plugin manifests for Claude Code (`.claude-plugin/plugin.json`), Codex (`.codex-plugin/plugin.json`), and Cursor (`.cursor-plugin/plugin.json`), all pointing at the same `skills/` directory.
+- Added native plugin manifests for Devin, Claude Code, Codex, and Cursor, all pointing at the same `skills/` directory.
 - Extended `tests/test_skill.sh` to validate all plugin manifests.
-
-## 0.5.0 — planned
-
-- Additional distribution paths as the ecosystem stabilizes (e.g. `npx skills` or agent marketplaces).
-
-## 0.4.0 — public release
-
-- Public release of the Devin plugin.
 
 ## 0.3.0 — 2026-09-09
 
