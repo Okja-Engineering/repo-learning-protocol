@@ -144,5 +144,20 @@ Append-only record for each completed release pass.
 - All tests pass: `tests/test_skill.sh` 24 passed; `tests/test_walk.sh` 14 passed; `skills/rlp/assets/tests/test_payload.sh` 12 passed.  
 **Findings repaired:** Rewrote `README.md` as public manifesto; removed `MANIFESTO.md`; updated `CLAUDE.md` and `CONTEXT.md` to point at `README.md` for the research rationale.  
 **Findings to triage:** None.  
-**Human decision:** Continue to final user-experience passes.  
-**Next pass authorized:** Final UX pass #1.
+**Human decision:** Move manifesto to separate root file and simplify README.  
+**Next pass authorized:** README/RLP restructuring pass.
+
+### README / RLP restructuring pass (pre-Pass 8)
+
+**Commit:** `b25fe7b`  
+**Outcome:** Moved the long manifesto content from `README.md` into a dedicated `RLP.md` at the repository root, then rewrote `README.md` to match the `icm-architect` shape: short concept, what it does, install, use, layout, tests, status, lineage, license. `README.md` now points to `RLP.md` for the protocol rationale.  
+**Evidence:**
+- Studied `RinDig/icm-architect` README: concise, skill-focused, links to paper.
+- Created `RLP.md` with the full rationale, principles, protocol loop, invariants, rejected options, validation posture, and contributing.
+- Rewrote `README.md` to 80 lines: concept, modes, install, use, layout, tests, status, lineage, license.
+- Updated `CLAUDE.md` and `CONTEXT.md` folder maps and routing to reference `RLP.md`.
+- All tests pass: `tests/test_skill.sh` 24 passed; `tests/test_walk.sh` 14 passed; `skills/rlp/assets/tests/test_payload.sh` 12 passed.  
+**Findings repaired:** Created `RLP.md`; simplified `README.md`; updated routing files.  
+**Findings to triage:** None.  
+**Human decision:** Continue to ICM architecture alignment pass.  
+**Next pass authorized:** ICM architecture alignment pass.
