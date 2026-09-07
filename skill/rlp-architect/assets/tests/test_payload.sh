@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd "$(dirname "$0")/../.."
-source assets/tests/helpers.sh
+root="$(cd "$(dirname "$0")/../.." && pwd)"
+source "$root/assets/tests/helpers.sh"
+cd "$root"
 
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
