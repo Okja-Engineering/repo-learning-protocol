@@ -111,5 +111,23 @@ Append-only record for each completed release pass.
 - Migration: legacy `.vault/insights/legacy.md` removed, `record_migration.sh` produced a `source` value with commit hash and original path; promotion to `docs/knowledge/input-validation.md` created; revert removed it.  
 **Findings repaired:** `learning_health.sh` now validates `verify_by` format before parsing and warns on placeholders instead of crashing on macOS.  
 **Findings to triage:** None.  
-**Human decision:** Continue to next review pass or make repo public.  
+**Human decision:** Continue to consumer point-of-view pass.  
+**Next pass authorized:** Consumer POV / naming pass.
+
+### Consumer POV / naming pass (pre-Pass 8)
+
+**Commit:** `7b6daed`  
+**Outcome:** The plugin namespace (`rlp-architect`) and skill namespace (`rlp`) are separated, and the skill bundle moved from the non-standard `skill/` directory to the Devin-default `skills/` directory. Invocation becomes `/rlp-architect:rlp <mode>`, which is shorter and avoids repeating the product name.  
+**Evidence:**
+- Devin plugin docs define invocation as `/<plugin>:<skill>` and the default skills directory as `skills/`.
+- All tests pass after rename: `tests/test_skill.sh` 24 passed; `tests/test_walk.sh` 14 passed; `skills/rlp/assets/tests/test_payload.sh` 12 passed.  
+**Findings repaired:**
+- Moved `skill/rlp-architect/` → `skills/rlp/`.
+- Changed skill name from `rlp-architect` to `rlp`.
+- Updated plugin manifest `"skills": "skill"` → `"skills": "skills"`.
+- Updated README invocation examples to `/rlp-architect:rlp <mode>`.
+- Updated `SKILL.md` title, metadata.spec comment, and global skill install path.
+- Updated `CLAUDE.md`, `CONTEXT.md`, `stages/03-skill/CONTEXT.md`, `docs/rlp-plugin-release-runbook.md`, and tests.
+**Findings to triage:** None.  
+**Human decision:** Continue to next pass or make repo public.  
 **Next pass authorized:** (pending user choice)
