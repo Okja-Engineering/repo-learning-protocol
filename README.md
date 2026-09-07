@@ -9,7 +9,7 @@ A research-backed protocol for turning corrections to AI-agent work into durable
 ### For users of the plugin
 
 - `.devin-plugin/plugin.json` — the Devin plugin manifest
-- `skill/rlp-architect/` — the shipped **Agent Skill** (`SKILL.md`, `scripts/`, `references/`, `templates/`, `assets/`)
+- `skills/rlp/` — the shipped **Agent Skill** (`SKILL.md`, `scripts/`, `references/`, `templates/`, `assets`)
 - `scripts/install-skill.sh` — install this checkout as a Devin plugin
 - `tests/test_skill.sh` — manifest and layout validation
 - `tests/test_walk.sh` — end-to-end plugin + scaffold-wiring + health tests
@@ -50,19 +50,19 @@ For local development, run `scripts/install-skill.sh`. Update a published instal
 In the target repo, invoke the skill with a mode. Devin plugin commands use the form `/plugin-name:skill-name mode`:
 
 ```text
-/rlp-architect:rlp-architect scaffold
+/rlp-architect:rlp scaffold
 ```
 
 Discovers the repository, asks which editor directory to use, and proposes minimal wiring: scripts, learning logs, inert templates, router references, and approved CI hooks. Existing stage contracts are extended rather than duplicated.
 
 ```text
-/rlp-architect:rlp-architect audit
+/rlp-architect:rlp audit
 ```
 
 Runs `scripts/learning_health.sh` and checks the five RLP invariants.
 
 ```text
-/rlp-architect:rlp-architect triage
+/rlp-architect:rlp triage
 ```
 
 Walks the inbox through the RLP router and drafts promotion PRs.

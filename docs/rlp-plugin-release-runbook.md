@@ -40,7 +40,7 @@ git log -1 --oneline
 **Load only:**
 
 - `.devin-plugin/plugin.json`
-- `skill/rlp-architect/SKILL.md`
+- `skills/rlp/SKILL.md`
 - Devin plugin manifest and command documentation
 - `tests/test_skill.sh`
 
@@ -90,7 +90,7 @@ devin plugins info rlp-architect
 ```bash
 tests/test_skill.sh
 tests/test_walk.sh
-skill/rlp-architect/assets/tests/test_payload.sh
+skills/rlp/assets/tests/test_payload.sh
 ```
 
 **Gate:** Clean-room use succeeds from the README alone and the working tree is clean after any repair commit.
@@ -105,9 +105,9 @@ skill/rlp-architect/assets/tests/test_payload.sh
 
 **Load only:**
 
-- the scaffold section of `skill/rlp-architect/SKILL.md`
-- `skill/rlp-architect/assets/`
-- `skill/rlp-architect/templates/`
+- the scaffold section of `skills/rlp/SKILL.md`
+- `skills/rlp/assets/`
+- `skills/rlp/templates/`
 - the temporary repository created for this pass
 
 **Work:**
@@ -139,7 +139,7 @@ skill/rlp-architect/assets/tests/test_payload.sh
 
 **Load only:**
 
-- the scaffold section of `skill/rlp-architect/SKILL.md`
+- the scaffold section of `skills/rlp/SKILL.md`
 - a disposable copy of the Content Engine root router
 - its stage contract filenames, not their full contents unless a proposed route requires one
 
@@ -172,7 +172,7 @@ skill/rlp-architect/assets/tests/test_payload.sh
 
 **Load only:**
 
-- the audit section of `skill/rlp-architect/SKILL.md`
+- the audit section of `skills/rlp/SKILL.md`
 - `scripts/learning_health.sh` in the disposable target
 - target router and editor pointers
 - one template and one real promoted artifact fixture
@@ -204,8 +204,8 @@ skill/rlp-architect/assets/tests/test_payload.sh
 
 **Load only:**
 
-- `skill/rlp-architect/references/migration-guide.md`
-- `skill/rlp-architect/scripts/record_migration.sh`
+- `skills/rlp/references/migration-guide.md`
+- `skills/rlp/scripts/record_migration.sh`
 - one selected `.vault/`, `state/lessons/`, or decisions entry
 - the real commit, PR, issue, or conversation that earned it
 
@@ -221,7 +221,7 @@ skill/rlp-architect/assets/tests/test_payload.sh
 **Verification:**
 
 ```bash
-skill/rlp-architect/scripts/record_migration.sh \
+skills/rlp/scripts/record_migration.sh \
   --path <legacy-path> \
   --migration-commit <real-commit> \
   --source "<real PR, commit, issue, or conversation>"
@@ -291,7 +291,7 @@ skill/rlp-architect/scripts/record_migration.sh \
 git status --short --branch
 tests/test_skill.sh
 tests/test_walk.sh
-skill/rlp-architect/assets/tests/test_payload.sh
+skills/rlp/assets/tests/test_payload.sh
 devin plugins install Okja-Engineering/repo-learning-protocol
 devin plugins info rlp-architect
 ```

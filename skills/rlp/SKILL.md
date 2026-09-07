@@ -1,5 +1,5 @@
 ---
-name: rlp-architect
+name: rlp
 description: Wire, audit, migrate, and operate the Repository Learning Protocol (RLP) in any repository. Use when recurring agent corrections should become enforced checks, regression tests, scoped context, or repo-specific procedures without growing always-on context. Provides scaffold, audit, triage, and migration guidance.
 license: MIT
 compatibility: POSIX shell (bash 3.2+ or zsh), git, and optional semgrep/pre-commit. No app-specific APIs required.
@@ -9,11 +9,11 @@ metadata:
   # https://github.com/Okja-Engineering/repo-learning-protocol/blob/main/stages/02-protocol/references/repository-learning-protocol.md
 ---
 
-# rlp-architect
+# rlp
 
 Turn recurring corrections into the strongest durable tier that can hold them: enforced check > regression test > scoped context > skill > discard.
 
-RLP is a generalized plugin, not repository content. Install or update it globally with `devin plugins install Okja-Engineering/repo-learning-protocol` and `devin plugins update rlp-architect`, or install the skill globally at `~/.config/devin/skills/rlp-architect/`. Never copy this bundle into a project's `.devin/skills/`; project skills are only for repository-specific procedures.
+RLP is a generalized plugin, not repository content. Install or update it globally with `devin plugins install Okja-Engineering/repo-learning-protocol` and `devin plugins update rlp-architect`, or install the skill globally at `~/.config/devin/skills/rlp/`. Never copy this bundle into a project's `.devin/skills/`; project skills are only for repository-specific procedures.
 
 ## Modes
 

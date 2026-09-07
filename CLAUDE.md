@@ -13,7 +13,7 @@ Two methodologies are layered here: **ICM** (folder structure as agent architect
 | `stages/01-research/` | Paper, evidence, citation pool |
 | `stages/02-protocol/` | The RLP spec |
 | `stages/03-skill/` | Stage contract for the `rlp-architect` product |
-| `.devin-plugin/plugin.json` + `skill/rlp-architect/` | Shipped Devin plugin and `rlp-architect` Agent Skill bundle |
+| `.devin-plugin/plugin.json` + `skills/rlp/` | Shipped Devin plugin and `rlp` Agent Skill bundle |
 | `scripts/install-skill.sh` | Install the local checkout through `devin plugins install` |
 | `stages/04-field/` | RLP applied to RLP: triage of field feedback |
 | `docs/learnings/` | This repo's own learning loop (stage 04 reads it) |

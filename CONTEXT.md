@@ -25,5 +25,5 @@ Stage 04 is ICM §6.3's edit-tracking loop made real: recurring corrections to t
 | Research plan | `stages/01-research/references/RESEARCH-PLAN.md` | Open questions and validation methods |
 | Citation pool | `stages/01-research/references/` | The annotated bibliography |
 | RLP spec | `stages/02-protocol/references/` | The canonical protocol spec |
-| Shipped plugin | `.devin-plugin/plugin.json`, `skill/rlp-architect/` | Devin plugin manifest and Agent Skill bundle |
+| Shipped plugin | `.devin-plugin/plugin.json`, `skills/rlp/` | Devin plugin manifest and Agent Skill bundle |
 | Plugin installer | `scripts/install-skill.sh` | Installs the local checkout through `devin plugins install` |

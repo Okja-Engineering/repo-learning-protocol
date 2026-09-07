@@ -1,6 +1,6 @@
 # Stage 03: Skill (the product)
 
-Change `skill/rlp-architect/SKILL.md` and `payload/` only here, only to match the spec or a stage 04 decision.
+Change `skills/rlp/SKILL.md` and `payload/` only here, only to match the spec or a stage 04 decision.
 
 ## Inputs
 
@@ -23,7 +23,7 @@ Change `skill/rlp-architect/SKILL.md` and `payload/` only here, only to match th
 
 | Artifact | Location | Format |
 |----------|----------|--------|
-| Skill changes | `skill/rlp-architect/` | SKILL.md + payload |
+| Skill changes | `skills/rlp/` | SKILL.md + payload |
 | Test changes | `tests/` | Python tests |
 
 Release = tag.

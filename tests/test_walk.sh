@@ -27,18 +27,18 @@ import json
 with open('.devin-plugin/plugin.json') as f:
     manifest = json.load(f)
 assert manifest['name'] == 'rlp-architect'
-assert manifest['skills'] == 'skill'
+assert manifest['skills'] == 'skills'
 PY
   assert "plugin points to canonical skill" true
-  assert "no project-local skill seed" test ! -e skill/rlp-architect/assets/rlp-architect
+  assert "no project-local skill seed" test ! -e skills/rlp/assets/rlp-architect
 }
 
 test_scaffold_assets() {
   local repo="$tmp/repo2"
   mkdir -p "$repo/scripts" "$repo/docs/learnings" "$repo/docs/rlp-architect/templates"
-  cp skill/rlp-architect/scripts/capture_learnings.sh skill/rlp-architect/scripts/learning_health.sh "$repo/scripts/"
-  cp skill/rlp-architect/assets/inbox.md skill/rlp-architect/assets/decisions.md "$repo/docs/learnings/"
-  cp -R skill/rlp-architect/templates/. "$repo/docs/rlp-architect/templates/"
+  cp skills/rlp/scripts/capture_learnings.sh skills/rlp/scripts/learning_health.sh "$repo/scripts/"
+  cp skills/rlp/assets/inbox.md skills/rlp/assets/decisions.md "$repo/docs/learnings/"
+  cp -R skills/rlp/templates/. "$repo/docs/rlp-architect/templates/"
   chmod +x "$repo/scripts/"*.sh
 
   assert "scaffolded scripts executable" test -x "$repo/scripts/capture_learnings.sh"
@@ -51,8 +51,8 @@ test_scaffold_assets() {
 test_capture_and_health() {
   local repo="$tmp/repo3"
   mkdir -p "$repo/scripts" "$repo/docs/learnings"
-  cp skill/rlp-architect/scripts/capture_learnings.sh skill/rlp-architect/scripts/learning_health.sh "$repo/scripts/"
-  cp skill/rlp-architect/assets/inbox.md "$repo/docs/learnings/"
+  cp skills/rlp/scripts/capture_learnings.sh skills/rlp/scripts/learning_health.sh "$repo/scripts/"
+  cp skills/rlp/assets/inbox.md "$repo/docs/learnings/"
   chmod +x "$repo/scripts/"*.sh
 
   "$repo/scripts/capture_learnings.sh" -i "$repo/docs/learnings/inbox.md" \
@@ -69,12 +69,12 @@ test_capture_and_health() {
 test_budget_enforcement() {
   printf 'one two three four five six seven eight nine ten.\n' > "$tmp/agents.md"
   local out
-  out="$(skill/rlp-architect/scripts/learning_health.sh -a "$tmp/agents.md" -b 5)"
+  out="$(skills/rlp/scripts/learning_health.sh -a "$tmp/agents.md" -b 5)"
   echo "$out" | grep -q "OVER BUDGET"
   assert "budget over reported" true
 
   local rc=0
-  skill/rlp-architect/scripts/learning_health.sh -a "$tmp/agents.md" -b 5 -c >/dev/null 2>&1 || rc=$?
+  skills/rlp/scripts/learning_health.sh -a "$tmp/agents.md" -b 5 -c >/dev/null 2>&1 || rc=$?
   assert "check-stubs exits 2 when over budget" test "$rc" -eq 2
 }
 
@@ -87,7 +87,7 @@ some rule
 EOF
 
   local out
-  out="$(skill/rlp-architect/scripts/learning_health.sh -a "$tmp/rule.md")"
+  out="$(skills/rlp/scripts/learning_health.sh -a "$tmp/rule.md")"
   echo "$out" | grep -q "verify_by 2020-01-01"
   assert "quoted stale artifact reported" true
 }
@@ -95,7 +95,7 @@ EOF
 test_semgrep_template_yaml_valid() {
   python3 - <<'PY'
 import yaml
-with open('skill/rlp-architect/templates/semgrep/rules.yml') as f:
+with open('skills/rlp/templates/semgrep/rules.yml') as f:
     yaml.safe_load(f)
 PY
   assert "Semgrep template parses" true
@@ -103,7 +103,7 @@ PY
 
 test_migration_provenance() {
   local out
-  out="$(skill/rlp-architect/scripts/record_migration.sh -p .vault/rule.md -m HEAD -s 'PR #42')"
+  out="$(skills/rlp/scripts/record_migration.sh -p .vault/rule.md -m HEAD -s 'PR #42')"
   echo "$out" | grep -q 'PR #42; migrated in commit '
   echo "$out" | grep -q ' from .vault/rule.md"'
   assert "migration provenance includes evidence and lineage" true
