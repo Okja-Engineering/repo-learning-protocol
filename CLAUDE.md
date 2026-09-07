@@ -8,7 +8,8 @@ Two methodologies are layered here: **ICM** (folder structure as agent architect
 
 | Path | Purpose |
 |------|---------|
-| `README.md` | Public-facing research manifesto and design rationale |
+| `README.md` | Public-facing plugin overview and entry point |
+| `RLP.md` | Protocol rationale and design principles |
 | `PREMISE.md` | Full research premise with evidence and citations |
 | `CONTEXT.md` | Task routing (Layer 1). Read it next. |
 | `stages/01-research/` | Paper, evidence, citation pool |
@@ -27,7 +28,7 @@ Two methodologies are layered here: **ICM** (folder structure as agent architect
 
 | You want to… | Go to |
 |---|---|
-| Understand why RLP exists | `PREMISE.md`, then `stages/01-research/` |
+| Understand why RLP exists | `RLP.md`, then `PREMISE.md`, then `stages/01-research/` |
 | Write or revise the research | `stages/01-research/CONTEXT.md` |
 | Change the protocol itself | `stages/02-protocol/CONTEXT.md` |
 | Change the skill or its payload | `stages/03-skill/CONTEXT.md` |
