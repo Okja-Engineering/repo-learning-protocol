@@ -88,3 +88,13 @@ Append-only record for each completed release pass.
 **Findings to triage:** None.  
 **Human decision:** Retag `v0.3.0` at this commit and push.  
 **Next pass authorized:** Pass 8 — Push and publish.
+
+### Fresh-eyes pass (pre-Pass 8)
+
+**Commit:** `492193b`  
+**Outcome:** Public-facing README and SKILL.md improved for first-time visitors: clearer product identity, user/contributor split, install verification, invocation-syntax note, and a correct canonical spec reference.  
+**Evidence:** `tests/test_skill.sh` 24 passed; `tests/test_walk.sh` 14 passed; `skill/rlp-architect/assets/tests/test_payload.sh` 12 passed.  
+**Findings repaired:** README title changed to `rlp-architect`; "What's here" split by audience; added `devin plugins info` verification; explained `/plugin:skill` invocation; polished v0.3.0 status; listed LICENSE; replaced relative `metadata.spec` with canonical URL comment in SKILL.md.  
+**Findings to triage:** None.  
+**Human decision:** Continue to next review pass or make repo public.  
+**Next pass authorized:** (pending user choice)
