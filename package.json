@@ -1,0 +1,14 @@
+{
+  "name": "rlp-architect",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Agent skills for the Repository Learning Protocol — turn corrections to AI-agent work into durable repository improvements.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Okja-Engineering/repo-learning-protocol"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "bash tests/test_skill.sh && bash tests/test_walk.sh && bash tests/payload/test_payload.sh"
+  }
+}

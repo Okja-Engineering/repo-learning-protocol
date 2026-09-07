@@ -31,11 +31,11 @@ Four focused skills, each doing one job:
 
 ## Install
 
-Two ways in, two philosophies.
+Three ways in, three philosophies.
 
 ### 1. Managed plugin (Devin)
 
-Install the whole set as a plugin. You subscribe to updates; the skills stay read-only and versioned.
+Install the whole set as a Devin plugin. You subscribe to updates; the skills stay read-only and versioned.
 
 ```bash
 devin plugins install Okja-Engineering/repo-learning-protocol
@@ -44,7 +44,22 @@ devin plugins info rlp-architect
 
 Update with `devin plugins update rlp-architect`.
 
-### 2. Standalone skill copy (Claude, Cursor, Codex, or any agent that loads skills)
+### 2. Cross-agent installer (Claude Code, Codex, Cursor, OpenCode, and 60+ others)
+
+Use the open [`skills` CLI](https://github.com/vercel-labs/skills) to install the skills you want into the agent you're using. It works from any GitHub repo that follows the Agent Skills layout.
+
+```bash
+# List the available skills
+npx skills add Okja-Engineering/repo-learning-protocol --list
+
+# Install all four skills to the agents you choose
+npx skills add Okja-Engineering/repo-learning-protocol
+
+# Or install just one skill globally
+npx skills add Okja-Engineering/repo-learning-protocol --skill scaffold -g
+```
+
+### 3. Standalone manual copy (any agent)
 
 Copy only the skills you want into your agent's skill directory. You own the files and pull updates when you choose.
 
@@ -60,7 +75,11 @@ The exact path depends on the agent (`~/.claude/skills/`, `.cursor/skills/`, `.c
 ### Local checkout
 
 ```bash
+# Devin
 devin plugins install .
+
+# skills CLI
+npx skills add file:///path/to/repo-learning-protocol
 ```
 
 ## Getting started
@@ -81,6 +100,7 @@ See [`.out-of-scope.md`](.out-of-scope.md) for the deliberate boundaries.
 rlp-architect/
 ├── .devin-plugin/plugin.json   # Devin plugin manifest
 ├── .out-of-scope.md             # deliberate boundaries
+├── package.json                 # release metadata and test script
 ├── skills/
 │   ├── scaffold/                # add project wiring
 │   ├── audit/                   # verify the five invariants
