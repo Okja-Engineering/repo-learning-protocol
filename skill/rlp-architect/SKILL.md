@@ -5,7 +5,8 @@ license: MIT
 compatibility: POSIX shell (bash 3.2+ or zsh), git, and optional semgrep/pre-commit. No app-specific APIs required.
 metadata:
   version: "0.3.0"
-  spec: stages/02-protocol/references/repository-learning-protocol.md
+  # Canonical RLP spec lives in the source repository at
+  # https://github.com/Okja-Engineering/repo-learning-protocol/blob/main/stages/02-protocol/references/repository-learning-protocol.md
 ---
 
 # rlp-architect
