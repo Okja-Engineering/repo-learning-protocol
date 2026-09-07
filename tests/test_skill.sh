@@ -20,7 +20,7 @@ assert() {
 # SKILL.md frontmatter parses and required fields are present.
 python3 - <<'PY'
 import yaml, re, sys
-with open('.agents/skills/rlp-architect/SKILL.md') as f:
+with open('skill/rlp-architect/SKILL.md') as f:
     txt = f.read()
 m = re.search(r'^---\n(.*?)\n---\n', txt, re.S)
 if not m:
@@ -36,22 +36,22 @@ PY
 assert "SKILL.md frontmatter valid" true
 
 # Directory name matches skill name.
-[[ -d .agents/skills/rlp-architect ]]
+[[ -d skill/rlp-architect ]]
 assert "skill directory exists" true
 
 # Payload contains the expected templates and scripts.
-file_count="$(find .agents/skills/rlp-architect/payload -type f | wc -l | tr -d '[:space:]')"
+file_count="$(find skill/rlp-architect/payload -type f | wc -l | tr -d '[:space:]')"
 [[ "$file_count" -ge 12 ]]
 assert "payload has at least 12 files" true
 
 # Payload scripts are executable.
-[[ -x .agents/skills/rlp-architect/payload/scripts/capture_learnings.sh ]]
+[[ -x skill/rlp-architect/payload/scripts/capture_learnings.sh ]]
 assert "capture_learnings.sh executable" true
-[[ -x .agents/skills/rlp-architect/payload/scripts/learning_health.sh ]]
+[[ -x skill/rlp-architect/payload/scripts/learning_health.sh ]]
 assert "learning_health.sh executable" true
 
 # Payload test suite passes.
-.agents/skills/rlp-architect/payload/tests/test_payload.sh >/dev/null
+skill/rlp-architect/payload/tests/test_payload.sh >/dev/null
 assert "payload tests pass" true
 
 echo
