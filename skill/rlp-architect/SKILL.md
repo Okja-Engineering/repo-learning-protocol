@@ -42,7 +42,7 @@ Scaffold remains an invocation mode because repositories need wiring, but it doe
    - merge a short RLP route into an existing `AGENTS.md` or root router; never replace the file;
    - if stage contracts exist, point each promoted artifact from the relevant existing `stages/*/CONTEXT.md`;
    - do not create an RLP stage in an existing staged workspace;
-   - only when no router or staged workspace exists, propose a minimal root router and `stages/00-learn/CONTEXT.md`.
+   - only when no router or staged workspace exists, propose a minimal root router and copy the bundled `assets/stages/00-learn/CONTEXT.md` to `stages/00-learn/CONTEXT.md`.
 6. Make the operation idempotent: compare content before writing, preserve user text, do not duplicate routes, and report unchanged files.
 7. Never copy an unfilled template into an active artifact path such as `docs/knowledge/`, `.devin/rules/`, or `semgrep/rules.yml`. Templates are not promotions.
 

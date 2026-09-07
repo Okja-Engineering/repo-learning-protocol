@@ -74,6 +74,8 @@ assert "knowledge template removed from references" true
 assert "rule template removed from references" true
 [[ ! -e skill/rlp-architect/assets/semgrep/rules.yml ]]
 assert "Semgrep template removed from assets" true
+[[ -f skill/rlp-architect/assets/stages/00-learn/CONTEXT.md ]]
+assert "stage-00 learn contract asset exists" true
 [[ -f skill/rlp-architect/references/migration-guide.md ]]
 assert "migration guide exists" true
 [[ -x skill/rlp-architect/scripts/record_migration.sh ]]

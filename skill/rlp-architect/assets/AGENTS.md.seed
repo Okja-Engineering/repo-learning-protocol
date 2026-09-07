@@ -10,6 +10,5 @@ This repository runs the Repository Learning Protocol (RLP).
 
 ## Links
 
-- Protocol: `docs/adr/0001-adopt-rlp.md`
 - Inbox: `docs/learnings/inbox.md`
 - Decisions: `docs/learnings/decisions.md`
