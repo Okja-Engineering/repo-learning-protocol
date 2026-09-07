@@ -129,5 +129,19 @@ Append-only record for each completed release pass.
 - Updated `SKILL.md` title, metadata.spec comment, and global skill install path.
 - Updated `CLAUDE.md`, `CONTEXT.md`, `stages/03-skill/CONTEXT.md`, `docs/rlp-plugin-release-runbook.md`, and tests.
 **Findings to triage:** None.  
-**Human decision:** Continue to next pass or make repo public.  
-**Next pass authorized:** (pending user choice)
+**Human decision:** Continue to Research Publication Pass.  
+**Next pass authorized:** Research Publication Pass.
+
+### Research Publication Pass (pre-Pass 8)
+
+**Commit:** `4442183`  
+**Outcome:** Added a public-facing research manifesto (`MANIFESTO.md`) that explains the North Star, how the protocol was derived from the evidence, the 60/30/10 design posture, the promotion ladder, the five invariants, and how the tooling implements the protocol. Linked it from `README.md`, `CLAUDE.md`, and `CONTEXT.md` so it is the first document a public reader sees.  
+**Evidence:**
+- Studied `icm-architect` README as a model: short manifesto, paper/community links, what-it-does, layout.
+- Drafted `MANIFESTO.md` (~115 lines) covering problem, evidence-based decisions, rejected alternatives, protocol, invariants, tooling, and validation posture.
+- Cross-checked against `skill/rlp-architect` (`skills/rlp/SKILL.md`): promotion ladder, invariants, rejection list, capture→triage→promote→measure→retire flow, and human-gated promotions all align.
+- All tests pass: `tests/test_skill.sh` 24 passed; `tests/test_walk.sh` 14 passed; `skills/rlp/assets/tests/test_payload.sh` 12 passed.  
+**Findings repaired:** Created `MANIFESTO.md`; updated `README.md`, `CLAUDE.md`, and `CONTEXT.md` routing/shared-resources tables.  
+**Findings to triage:** None.  
+**Human decision:** Continue to final user-experience passes.  
+**Next pass authorized:** Final UX pass #1.
