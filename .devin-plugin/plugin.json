@@ -1,7 +1,7 @@
 {
   "name": "rlp-architect",
   "version": "0.3.0",
-  "description": "Repository Learning Protocol scaffold, audit, triage, and migration guidance",
+  "description": "Repository Learning Protocol skills for scaffold, audit, triage, and migrate",
   "license": "MIT",
   "skills": "skills"
 }
