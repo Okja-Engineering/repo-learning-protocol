@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+source "$(dirname "$0")/helpers.sh"
 root="$(cd "$(dirname "$0")/../.." && pwd)"
-source "$root/assets/tests/helpers.sh"
 cd "$root"
 
 tmp="$(mktemp -d)"
