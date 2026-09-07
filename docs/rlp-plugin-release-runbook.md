@@ -346,3 +346,13 @@ Next pass authorized:
 ```
 
 Do not combine pass records. The point is to preserve what was proven at each boundary, not to produce one retrospective summary after the fact.
+
+### Pass 1 record
+
+**Pass:** Pass 1 — Plugin contract  
+**Commit:** `1e6d913`  
+**Outcome:** Plugin docs and installer aligned with observed Devin CLI behavior; structural tests pass. Plugin-install verification commands (`devin plugins install --local`, `devin plugins list`, `devin plugins info`) could not be re-run in this session because the CLI did not recognize the stored credentials as logged in.  
+**Evidence:** `tests/test_skill.sh` 23 passed; `tests/test_walk.sh` 14 passed; `skill/rlp-architect/assets/tests/test_payload.sh` 12 passed; `shasum -a 256 -c SHA256SUMS` all OK.  
+**Findings repaired:** Invocation syntax `/rlp-architect` → `/rlp-architect:rlp-architect`; installer changed to `devin plugins install --local`; test asserts `--local`; SKILL.md and migration guide use "staged workspace" instead of "ICM workspace".  
+**Human decision:** Proceed without re-running authenticated plugin-management commands and continue to Pass 2.  
+**Next pass authorized:** Pass 2 — Clean-room package.
