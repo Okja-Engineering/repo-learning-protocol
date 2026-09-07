@@ -94,7 +94,6 @@ See [`.out-of-scope.md`](.out-of-scope.md) for the deliberate boundaries.
 rlp-architect/
 ├── .devin-plugin/plugin.json   # Devin plugin manifest
 ├── .out-of-scope.md             # deliberate boundaries
-├── package.json                 # release metadata and test script
 ├── skills/
 │   ├── scaffold/                # add project wiring
 │   ├── audit/                   # verify the five invariants

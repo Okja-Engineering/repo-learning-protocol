@@ -13,7 +13,6 @@ All notable changes to `rlp-architect`.
 - Validated the plugin boundary in a production field repository by removing its project-local generalized-skill copy and routing it to the canonical plugin.
 - Rewrote `README.md` with a problem/skill mapping, skills catalog, and clearer install story (Devin plugin and manual copy).
 - Added `.out-of-scope.md` documenting deliberate boundaries and claims RLP does not make.
-- Added `package.json` with repository metadata and a `test` script.
 
 ## 0.5.0 — planned
 
