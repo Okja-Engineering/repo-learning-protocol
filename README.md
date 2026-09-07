@@ -56,6 +56,15 @@ Devin plugin commands use the form `/plugin-name:skill-name`:
 /rlp-architect:migrate
 ```
 
+## Getting started
+
+1. **Install** the plugin (Devin) or copy the skills you want into your agent's skill directory.
+2. **Scaffold** a target repository: `/rlp-architect:scaffold`. This creates `docs/learnings/inbox.md`, `docs/learnings/decisions.md`, capture/health scripts, and inert promotion templates — only the wiring, never the generalized skill.
+3. **Capture** corrections as one-line candidates in the inbox, either by hand or with the copied `capture_learnings.sh` script.
+4. **Triage** weekly: `/rlp-architect:triage`. Second occurrence is the signal; security or data-corruption issues route immediately.
+5. **Audit** before releases or after promotions: `/rlp-architect:audit` checks the five invariants.
+6. **Migrate** legacy lessons only when you have real evidence: `/rlp-architect:migrate`.
+
 ## Layout
 
 ```text
@@ -68,7 +77,8 @@ rlp-architect/
 │   └── migrate/               # move legacy learnings
 ├── tests/
 │   ├── test_skill.sh           # manifest and layout validation
-│   └── test_walk.sh            # end-to-end plugin + scaffold + health tests
+│   ├── test_walk.sh            # end-to-end plugin + scaffold + health tests
+│   └── payload/                # payload script unit tests
 ├── RLP.md                      # protocol rationale and design principles
 ├── CHANGELOG.md                # version history
 ├── RELEASE_NOTES.md            # user-facing release summaries
