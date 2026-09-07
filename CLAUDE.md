@@ -15,7 +15,7 @@ Two methodologies are layered here: **ICM** (folder structure as agent architect
 | `stages/03-skill/` | The product — `rlp-architect` skill + payload |
 | `stages/04-field/` | RLP applied to RLP: triage of field feedback |
 | `docs/learnings/` | This repo's own learning loop (stage 04 reads it) |
-| `docs/rlp-architect-construction-playbook.md` | The construction playbook by Okja Engineering |
+| `docs/rlp-architect-construction-playbook.md` | The construction playbook |
 | `research/RESEARCH-PLAN.md` | Open questions and validation methods |
 | `references/` | Supporting evidence and citation pool |
 | `tests/` | Proof suite (payload + walk test) |

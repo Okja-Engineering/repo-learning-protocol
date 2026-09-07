@@ -202,4 +202,4 @@ Full annotated bibliography (109 entries) in `stages/01-research/references/REFE
 
 ## Changelog
 
-- v0.1 (2026-09-06): Initial draft. Based on the RLP playbook PREMISE.md (Okja Engineering, 2026-08-26), extended with open questions, validation plan, and community contribution model.
+- v0.1 (2026-09-06): Initial draft. Based on the RLP playbook PREMISE.md, extended with open questions, validation plan, and community contribution model.

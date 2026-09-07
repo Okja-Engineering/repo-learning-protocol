@@ -1,7 +1,7 @@
 # The Premise
 
 *Condensed from the Repository Learning Protocol spec v0.2 and its evidence
-review (Okja Engineering, Aug 2026). This file travels with rlp-architect so the
+review (Aug 2026). This file travels with rlp-architect so the
 tool carries its own "why". Nothing below claims novelty beyond the
 assembly; sources are named throughout.*
 

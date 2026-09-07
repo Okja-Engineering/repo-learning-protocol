@@ -2,7 +2,7 @@
 
 From an empty repository to rlp-architect v0.2.0 — an ICM factory running RLP on itself.
 
-**Author:** Okja Engineering · 2026-08-26
+**Date:** 2026-08-26
 **Status:** Self-contained · self-verifying (15 tests · 34 checksums · walk test in CI)
 
 ## Purpose

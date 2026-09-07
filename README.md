@@ -4,7 +4,7 @@ A research-backed protocol for turning corrections to AI-agent work into durable
 
 ## What's here
 
-- `docs/rlp-architect-construction-playbook.md` — the full construction playbook (by Okja Engineering, 2026-08-26)
+- `docs/rlp-architect-construction-playbook.md` — the full construction playbook
 - `research/RESEARCH-PLAN.md` — the research plan: open questions, validation methods, brief structure
 - `references/` — citation pool and supporting evidence (to be populated)
 
